@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elvenir & Obexol - Tu Bienestar Comienza Hoy</title>
+    <title>Elvenir & Obexol - Inicia tu Transformación Hoy | Bienestar Vital</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,13 +39,13 @@
             scroll-behavior: smooth;
         }
 
-body {
-    font-family: var(--fuente-cuerpo);
-    color: var(--color-texto-medio);
-    line-height: 1.6;
-    background-color: #fff;
-    overflow-x: hidden; /* 👈 AÑADE ESTA LÍNEA */
-}
+        body {
+            font-family: var(--fuente-cuerpo);
+            color: var(--color-texto-medio);
+            line-height: 1.6;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
 
         h1, h2, h3 {
             font-family: var(--fuente-titulos);
@@ -107,7 +107,7 @@ body {
             font-weight: 700;
             color: var(--color-primario);
             text-decoration: none;
-            z-index: 1001; /* ✅ CORREGIDO: Reducido para estar debajo del menú móvil */
+            z-index: 1001;
         }
 
         .nav-links {
@@ -147,15 +147,14 @@ body {
             width: 100%;
         }
         
-        /* --- INICIO: ESTILOS MENÚ MÓVIL --- */
 .menu-toggle {
-    display: none; /* Oculto en desktop */
+    display: none;
     font-size: 1.8rem;
     color: var(--color-texto-oscuro);
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 1011; /* 👈 Correcto: Por encima del panel del menú (1010) */
+    z-index: 1011;
     padding: 5px;
     transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -164,10 +163,8 @@ body {
             color: var(--color-primario);
             transform: rotate(90deg);
         }
-        /* --- FIN: ESTILOS MENÚ MÓVIL --- */
 
-
-        /* --- 3. Sección Hero (Principal) (V3) --- */
+        /* --- 3. Sección Hero (ENFOQUE FEMENINO) --- */
         .hero {
             height: 100vh;
             min-height: 700px;
@@ -177,7 +174,7 @@ body {
             text-align: center;
             color: white;
             padding-top: 100px;
-            background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%); /* Degradado vibrante */
+            background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
             background-size: cover;
             background-position: center center;
             position: relative;
@@ -191,16 +188,16 @@ body {
         }
 
         .hero h1 {
-            font-size: 4.5rem; /* Aumentado */
+            font-size: 4.5rem;
             color: #fff;
             margin-bottom: 25px;
             font-weight: 800;
-            text-shadow: 3px 3px 12px rgba(0,0,0,0.5); /* Sombra más pronunciada */
+            text-shadow: 3px 3px 12px rgba(0,0,0,0.5);
             letter-spacing: -2px;
         }
 
         .hero p {
-            font-size: 1.5rem; /* Aumentado */
+            font-size: 1.5rem;
             color: rgba(255,255,255,0.95);
             margin-bottom: 40px;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
@@ -211,33 +208,33 @@ body {
             text-decoration: none;
             color: #fff;
             background-color: var(--color-primario);
-            padding: 18px 45px; /* Más padding */
+            padding: 18px 45px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1.15rem; /* Aumentado */
+            font-size: 1.15rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             display: inline-block;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Sombra más definida */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             border: none;
-            cursor: pointer; /* Añadido para consistencia */
+            cursor: pointer;
         }
 
         .btn:hover {
-            transform: translateY(-7px) scale(1.03); /* Más movimiento */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3); /* Sombra más grande */
-            filter: brightness(1.15); /* Más brillo */
+            transform: translateY(-7px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            filter: brightness(1.15);
         }
 
         .btn-secondary {
-            background-color: var(--color-secundario); /* Nuevo color secundario para el botón */
+            background-color: var(--color-terciario); /* Color cambiado para CTA más fuerte */
             margin-left: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .btn-secondary:hover {
-            background-color: var(--color-secundario);
+            background-color: var(--color-terciario);
             transform: translateY(-7px) scale(1.03);
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             filter: brightness(1.15);
@@ -246,7 +243,7 @@ body {
         /* --- 4. Sección Productos (V3) --- */
         #productos {
             background-color: var(--color-fondo-claro);
-            padding-bottom: 50px; /* Menos padding abajo para la siguiente sección */
+            padding-bottom: 50px; 
         }
 
         .section-title {
@@ -325,7 +322,7 @@ body {
 
         .producto-card .marca {
             font-size: 1.1rem;
-            color: var(--color-terciario); /* Usando el turquesa para la marca */
+            color: var(--color-terciario);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -339,23 +336,23 @@ body {
             flex-grow: 1;
         }
 
-        /* --- 5. Sección Consideraciones Importantes (V3 - NUEVA) --- */
+        /* --- 5. Sección Consideraciones (REENFOCADA) --- */
         #consideraciones {
             background-color: #fff;
-            padding-top: 50px; /* Menos padding arriba para pegarse a la anterior */
+            padding-top: 50px;
             padding-bottom: 100px;
         }
         
         .consideraciones-wrapper {
             display: flex;
-            flex-direction: column; /* Por defecto para móvil */
+            flex-direction: column;
             align-items: center;
             gap: 40px;
         }
 
         @media (min-width: 769px) {
             .consideraciones-wrapper {
-                flex-direction: row; /* En desktop, lado a lado */
+                flex-direction: row;
                 justify-content: center;
                 align-items: flex-start;
             }
@@ -371,7 +368,6 @@ body {
         }
 
         .consideraciones-card.advertencia-list {
-            /* ✅ CORREGIDO: Mejor contraste para accesibilidad */
             background-color: var(--color-texto-oscuro); 
             color: #fff;
             box-shadow: 0 15px 40px rgba(0,0,0, 0.3);
@@ -381,7 +377,7 @@ body {
             color: #fff;
             margin-bottom: 25px;
             font-size: 2rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Sombra para legibilidad */
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         .consideraciones-card h3 {
@@ -397,11 +393,10 @@ body {
             margin-bottom: 15px;
         }
 
-        /* --- INICIO: MEJORA ACCESIBILIDAD --- */
         .consideraciones-card.advertencia-list p {
-             color: #ffffff; /* Color blanco puro para mejor contraste */
-             font-weight: 400; /* Un poco más de peso */
-             text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* Sombra ligera */
+             color: #ffffff;
+             font-weight: 400;
+             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
         .consideraciones-card ul {
@@ -415,11 +410,10 @@ body {
             margin-bottom: 15px;
             font-size: 1.1rem;
             line-height: 1.5;
-            color: #ffffff; /* Color blanco puro */
-            font-weight: 500; /* Más peso para destacar */
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* Sombra ligera */
+            color: #ffffff;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
-        /* --- FIN: MEJORA ACCESIBILIDAD --- */
 
         .consideraciones-card ul li:last-child {
             margin-bottom: 0;
@@ -430,13 +424,105 @@ body {
             left: 0;
             top: 3px;
             font-size: 1.5rem;
-            color: #fff; /* Color de icono en la lista */
+            color: #fff;
         }
 
-        /* --- 6. Sección Beneficios (V3) --- */
+        /* --- 5.5. Sección Dieta (REENFOCADA) --- */
+        #dieta-tratamiento {
+            background-color: var(--color-fondo-claro); /* Fondo claro para alternar */
+            padding-top: 50px;
+            padding-bottom: 100px;
+        }
+
+        .dieta-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        @media (min-width: 769px) {
+            .dieta-wrapper {
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+            }
+        }
+
+        .dieta-card {
+            background-color: #fff; /* Fondo blanco */
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 600px;
+            flex-grow: 1;
+            border-left: 5px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .dieta-card:hover {
+             border-left-color: var(--color-secundario);
+        }
+
+        .dieta-card h3 {
+            font-size: 2rem;
+            color: var(--color-texto-oscuro);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dieta-card h3 i {
+            margin-right: 15px;
+            font-size: 2.2rem;
+        }
+
+        .dieta-card:first-child h3 i {
+            color: var(--color-primario);
+        }
+        
+        .dieta-card:last-child h3 i {
+            color: var(--color-terciario);
+        }
+
+        .dieta-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .dieta-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .dieta-card ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: var(--color-texto-medio);
+            line-height: 1.5;
+        }
+
+        .dieta-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-secundario);
+        }
+
+        .dieta-card ul li strong {
+            color: var(--color-texto-oscuro);
+            font-weight: 600;
+        }
+
+        /* --- 6. Sección Beneficios (REENFOCADA) --- */
         #beneficios {
-            background-color: var(--color-fondo-claro);
-            padding-top: 50px; /* Menos padding arriba */
+            background-color: #fff; /* Fondo blanco */
+            padding-top: 50px;
         }
 
         .beneficios-grid {
@@ -447,7 +533,7 @@ body {
         }
 
         .beneficio-item {
-            background: #fff;
+            background: var(--color-fondo-claro); /* Fondo claro */
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -460,15 +546,15 @@ body {
         }
 
         .beneficio-item .icon {
-            font-size: 3.8rem; /* Aumentado */
-            color: var(--color-terciario); /* Usando el turquesa */
+            font-size: 3.8rem;
+            color: var(--color-terciario);
             margin-bottom: 25px;
             display: inline-block;
             transition: color 0.3s ease;
         }
         
         .beneficio-item:hover .icon {
-            color: var(--color-primario); /* Cambio de color al hover */
+            color: var(--color-primario);
         }
 
         .beneficio-item h3 {
@@ -484,12 +570,203 @@ body {
             color: var(--color-texto-medio);
         }
 
-        /* --- 7. Sección CTA (Call To Action) (V3) --- */
-        #cta { /* ✅ CORREGIDO: Comentarios extra eliminados */
+
+        /* --- 7. NUEVA SECCIÓN: CÓMO COMPRAR (LOGÍSTICA) --- */
+        #como-comprar {
+            background-color: var(--color-fondo-claro);
+            padding-bottom: 100px;
+        }
+
+        .como-comprar-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 769px) {
+            .como-comprar-wrapper {
+                grid-template-columns: 1fr 1fr; /* Dos columnas en desktop */
+            }
+        }
+
+        .como-comprar-card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--color-primario);
+        }
+        
+        .como-comprar-card.provincia {
+             border-top-color: var(--color-secundario);
+        }
+
+        .como-comprar-card h3 {
+            font-size: 2rem;
+            color: var(--color-texto-oscuro);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .como-comprar-card h3 i {
+            margin-right: 15px;
+            font-size: 2.2rem;
+            color: var(--color-primario);
+        }
+        
+        .como-comprar-card.provincia h3 i {
+            color: var(--color-secundario);
+        }
+
+        .como-comprar-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .como-comprar-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .como-comprar-card ul li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: var(--color-texto-medio);
+            line-height: 1.5;
+        }
+        
+        .como-comprar-card ul li .step {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background-color: var(--color-secundario);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .como-comprar-card ul li strong {
+            color: var(--color-texto-oscuro);
+            font-weight: 600;
+        }
+
+        /* --- 7.5. INICIO NUEVA SECCIÓN: PREGUNTAS FRECUENTES (FAQ) --- */
+        #faq {
+            background-color: #fff; /* Fondo blanco, alterna con la sección anterior */
+            padding-top: 50px; 
+            padding-bottom: 50px; 
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* 1 columna en móvil */
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .faq-grid {
+                grid-template-columns: 1fr 1fr; /* 2 columnas en desktop */
+            }
+        }
+
+        .faq-item {
+            background: var(--color-fondo-claro); /* Fondo grisáceo claro para las tarjetas */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .faq-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .faq-item h3 {
+            font-size: 1.5rem; /* Tamaño de H3 ajustado para FAQ */
+            color: var(--color-texto-oscuro);
+            font-family: var(--fuente-titulos);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .faq-item p,
+        .faq-item ul {
+            font-size: 1rem;
+            color: var(--color-texto-medio);
+            margin-bottom: 15px;
+        }
+
+        .faq-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .faq-item ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo genérico para viñetas de lista */
+        .faq-item ul li::before {
+            content: '•';
+            color: var(--color-primario);
+            position: absolute;
+            left: 10px;
+            font-weight: 700;
+        }
+
+        /* Emojis específicos para la lista de dieta (Q5) */
+        .faq-item ul.dieta-list li:nth-child(1)::before { content: '🥦'; left: 8px; }
+        .faq-item ul.dieta-list li:nth-child(2)::before { content: '💧'; left: 8px; }
+        .faq-item ul.dieta-list li:nth-child(3)::before { content: '🚫'; left: 8px; }
+        
+        /* Emojis para la lista de efectos (Q8) */
+        .faq-item ul.effects-list li:nth-child(1)::before { content: '😴'; left: 8px; }
+        .faq-item ul.effects-list li:nth-child(2)::before { content: '❤️'; left: 8px; }
+        .faq-item ul.effects-list li:nth-child(3)::before { content: '😬'; left: 8px; }
+        .faq-item ul.effects-list li:nth-child(4)::before { content: '💧'; left: 8px; }
+
+        /* Emojis para la lista de contraindicaciones (Q9) */
+        .faq-item ul.contra-list li::before {
+            content: '🚫'; left: 8px;
+        }
+        
+        .faq-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-item strong {
+             color: var(--color-texto-oscuro);
+             font-weight: 600;
+        }
+        
+        .faq-item .warning-text {
+            color: var(--color-primario);
+            font-weight: 700;
+            display: block; /* Para que ocupe su propia línea */
+            margin-top: 10px;
+        }
+        /* --- 7.5. FIN NUEVA SECCIÓN: PREGUNTAS FRECUENTES (FAQ) --- */
+
+
+        /* --- 8. Sección CTA (REENFOCADA A COMPRA) --- */
+        #cta {
             background: linear-gradient(45deg, var(--color-primario), var(--color-secundario));
             color: #fff;
             text-align: center;
-            padding: 120px 0; /* Más padding */
+            padding: 120px 0;
         }
         
         #cta h2 {
@@ -500,7 +777,7 @@ body {
         }
         
         #cta p {
-            font-size: 1.6rem; /* Aumentado */
+            font-size: 1.6rem;
             color: rgba(255,255,255,0.95);
             margin-bottom: 45px;
             max-width: 800px;
@@ -513,14 +790,16 @@ body {
             background-color: #fff;
             color: var(--color-primario);
             box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            font-size: 1.3rem; /* Botón más grande */
+            padding: 20px 50px;
         }
         
         #cta .btn:hover {
-            color: var(--color-secundario); /* Cambio de color al hover */
+            color: var(--color-secundario);
             box-shadow: 0 15px 35px rgba(0,0,0,0.35);
         }
         
-        /* --- 8. Footer (V3) --- */
+        /* --- 9. Footer (V3) --- */
         .footer {
             background-color: var(--color-texto-oscuro);
             color: #AAB7C4;
@@ -574,30 +853,30 @@ body {
             color: #8C98A4;
         }
         
-        /* --- 9. Botón Flotante WhatsApp (V3) --- */
+        /* --- 10. Botón Flotante WhatsApp (V3) --- */
         .whatsapp-float {
-            position: fixed; /* Aseguramos la posición */
+            position: fixed;
             background-color: #25D366;
-            width: 70px; /* Tamaño ligeramente mayor */
+            width: 70px;
             height: 70px;
-            border-radius: 50%; /* Aseguramos que sea redondo */
-            display: flex; /* Para centrar el icono */
+            border-radius: 50%;
+            display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 3rem; /* Icono más grande */
+            font-size: 3rem;
             color: #fff;
             text-decoration: none;
-            bottom: 35px; /* Más separado del borde */
+            bottom: 35px;
             right: 35px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Sombra más fuerte */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             animation: pulse-whatsapp 2s infinite;
-            z-index: 999; /* Por encima de otro contenido */
-            transition: all 0.3s ease; /* Transición para el hover */
+            z-index: 999;
+            transition: all 0.3s ease;
         }
         
         .whatsapp-float:hover {
             animation-play-state: paused;
-            transform: scale(1.2); /* Más grande al hover */
+            transform: scale(1.2);
             filter: brightness(1.15);
         }
 
@@ -606,14 +885,14 @@ body {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
             }
             70% {
-                box-shadow: 0 0 0 25px rgba(37, 211, 102, 0); /* Pulso más amplio */
+                box-shadow: 0 0 0 25px rgba(37, 211, 102, 0);
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
             }
         }
         
-        /* --- 10. Responsive Design (V3) --- */
+        /* --- 11. Responsive Design (V3) --- */
         @media (max-width: 992px) {
             h1 { font-size: 3.2rem; }
             h2 { font-size: 2.5rem; }
@@ -626,24 +905,27 @@ body {
             
             .consideraciones-card h3, .consideraciones-card.advertencia-list h3 { font-size: 1.8rem; }
             .consideraciones-card p, .consideraciones-card ul li { font-size: 1rem; }
-.dieta-card h3 { font-size: 1.8rem; }
-.dieta-card p, .dieta-card ul li { font-size: 1rem; }
+            .dieta-card h3 { font-size: 1.8rem; }
+            .dieta-card p, .dieta-card ul li { font-size: 1rem; }
+            .como-comprar-card h3 { font-size: 1.8rem; }
+            .como-comprar-card p, .como-comprar-card ul li { font-size: 1rem; }
+            .faq-item h3 { font-size: 1.4rem; } /* Ajuste responsive FAQ */
+            .faq-item p, .faq-item ul { font-size: 0.95rem; }
+
             #cta h2 { font-size: 2.8rem; }
             #cta p { font-size: 1.3rem; }
         }
 
         @media (max-width: 768px) {
-            /* --- INICIO: ESTILOS RESPONSIVE MENÚ MÓVIL --- */
             .menu-toggle {
-                display: block; /* Muestra el botón hamburguesa */
+                display: block;
             }
 
             .nav-links {
-                /* Oculta el menú fuera de la pantalla */
                 position: fixed;
                 top: 0;
-                right: -100%; /* Inicia fuera de la pantalla a la derecha */
-                width: 80%; /* Ocupa el 80% del ancho */
+                right: -100%;
+                width: 80%;
                 height: 100vh;
                 background-color: #fff;
                 flex-direction: column;
@@ -651,12 +933,12 @@ body {
                 align-items: center;
                 box-shadow: -5px 0 25px rgba(0,0,0,0.15);
                 transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                padding-top: 60px; /* Espacio para el botón de cerrar */
-                z-index: 1010; /* ✅ CORREGIDO: Por encima del logo (1001), debajo del botón (1011) */
+                padding-top: 60px;
+                z-index: 1010;
             }
-.dieta-card { padding: 30px; }
+            .dieta-card { padding: 30px; }
             .nav-links.active {
-                right: 0; /* Muestra el menú al activarlo */
+                right: 0;
             }
 
             .nav-links li {
@@ -666,7 +948,7 @@ body {
             }
 
             .nav-links a {
-                display: block; /* Ocupa todo el ancho del <li> */
+                display: block;
                 padding: 22px 0;
                 font-size: 1.4rem;
                 font-family: var(--fuente-titulos);
@@ -679,10 +961,9 @@ body {
             }
 
             .nav-links a::after {
-                display: none; /* Quitamos la línea inferior en móvil */
+                display: none;
             }
             
-            /* Cambia el ícono de hamburguesa a "X" cuando está activo */
             .menu-toggle.active i {
                 transform: rotate(180deg);
             }
@@ -695,8 +976,6 @@ body {
             .menu-toggle.active .fa-times {
                 display: block;
             }
-            /* --- FIN: ESTILOS RESPONSIVE MENÚ MÓVIL --- */
-
             
             .hero {
                 padding-top: 120px;
@@ -722,7 +1001,8 @@ body {
             }
             
             .productos-grid,
-            .beneficios-grid {
+            .beneficios-grid,
+            .faq-grid { /* FAQ a 1 columna en móvil */
                 grid-template-columns: 1fr;
             }
             
@@ -734,7 +1014,7 @@ body {
             #cta p { font-size: 1.1rem; }
             
             .whatsapp-float {
-                width: 60px; /* Ligeramente más pequeño en móvil */
+                width: 60px;
                 height: 60px;
                 font-size: 2.6rem;
                 bottom: 20px;
@@ -748,98 +1028,8 @@ body {
             .consideraciones-card {
                 padding: 30px;
             }
-        }
-        /* --- 5.5. Sección Dieta y Recomendaciones (NUEVA) --- */
-        #dieta-tratamiento {
-            background-color: #fff; /* Fondo blanco, alterna con la sección anterior */
-            padding-top: 50px; /* Menos padding para pegarse a la anterior */
-            padding-bottom: 100px;
-        }
-
-        .dieta-wrapper {
-            display: flex;
-            flex-direction: column; /* Móvil primero */
-            align-items: center;
-            gap: 40px;
-        }
-
-        @media (min-width: 769px) {
-            .dieta-wrapper {
-                flex-direction: row; /* Desktop lado a lado */
-                justify-content: center;
-                align-items: flex-start;
-            }
-        }
-
-        .dieta-card {
-            background-color: var(--color-fondo-claro);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 600px;
-            flex-grow: 1;
-            border-left: 5px solid transparent; /* Borde sutil para decorar */
-            transition: border-color 0.3s ease;
-        }
-        
-        .dieta-card:hover {
-             border-left-color: var(--color-secundario);
-        }
-
-        .dieta-card h3 {
-            font-size: 2rem;
-            color: var(--color-texto-oscuro);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-        }
-
-        .dieta-card h3 i {
-            margin-right: 15px;
-            font-size: 2.2rem;
-        }
-
-        /* Colores de iconos */
-        .dieta-card:first-child h3 i { /* El primer card (Evitar) */
-            color: var(--color-primario);
-        }
-        
-        .dieta-card:last-child h3 i { /* El segundo card (Priorizar) */
-            color: var(--color-terciario);
-        }
-
-        .dieta-card p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .dieta-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .dieta-card ul li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 12px;
-            font-size: 1.05rem;
-            color: var(--color-texto-medio);
-            line-height: 1.5;
-        }
-
-        .dieta-card ul li::before {
-            content: '•';
-            position: absolute;
-            left: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--color-secundario);
-        }
-
-        .dieta-card ul li strong {
-            color: var(--color-texto-oscuro);
-            font-weight: 600;
+            .como-comprar-card { padding: 30px; }
+            .faq-item { padding: 30px; } /* Padding responsive FAQ */
         }
     </style>
 </head>
@@ -848,11 +1038,13 @@ body {
     <header class="header" id="header">
         <nav class="navbar">
             <a href="#hero" class="logo">Bienestar Vital</a>
-         <ul class="nav-links" id="nav-links">
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#beneficios">Beneficios</a></li>
-                <li><a href="#consideraciones">Advertencias</a></li>
-                <li><a href="#dieta-tratamiento">Dieta</a></li> <li><a href="#cta">Contacto</a></li>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#productos">PRODUCTOS</a></li>
+                <li><a href="#beneficios">NOSOTROS</a></li>
+                <li><a href="#como-comprar">Cómo Comprar</a></li>
+                <li><a href="#dieta-tratamiento">Dieta</a></li>
+                <li><a href="#faq">Preguntas</a></li>
+                <li><a href="#cta">¡Pedir Ahora!</a></li>
             </ul>
             <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
                 <i class="fas fa-bars" aria-hidden="true"></i>
@@ -863,18 +1055,18 @@ body {
 
     <section class="hero" id="hero">
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
-            <h1>Tu camino hacia una vida más plena empieza hoy</h1>
-            <p>Con Elvenir y Obexol, obtén el apoyo que necesitas para transformar tu bienestar. Productos 100% originales, disponibles para todo Perú.</p>
-            <a href="#productos" class="btn">Explorar Productos</a>
-            <a href="https://wa.me/51900894032?text=Hola%2C%20quisiera%20consultar%20sobre%20Elvenir%2FObexol" target="_blank" class="btn btn-secondary">Consulta por WhatsApp <i class="fab fa-whatsapp"></i></a>
+            <h1>Inicia tu transformación y siéntete increíble</h1>
+            <p>Sabemos que buscas un cambio real. Con Elvenir y Obexol originales, te acompañamos a recuperar tu energía y confianza. 100% originales, con envío a todo Perú.</p>
+            <a href="#productos" class="btn">Ver Productos</a>
+            <a href="https://wa.me/51900894032?text=Hola!%20Quiero%20iniciar%20mi%20pedido%20de%20Elvenir%2FObexol" target="_blank" class="btn btn-secondary">¡Pídelo Aquí por WhatsApp! <i class="fab fa-whatsapp"></i></a>
         </div>
     </section>
 
     <section id="productos">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Nuestros Productos Premium</h2>
-                <p>Descubre Elvenir y Obexol, formulados para apoyarte en tu camino hacia el bienestar.</p>
+                <h2>Tus Aliados en el Proceso</h2>
+                <p>Elige el apoyo ideal para tu meta. Ambos con Fentermina Clorhidrato 37.5 mg, 100% originales y sellados.</p>
             </div>
             
             <div class="productos-grid">
@@ -898,8 +1090,8 @@ body {
     <section id="consideraciones">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Consideraciones Importantes</h2>
-                <p>Tu salud es lo primero. Conoce las condiciones bajo las cuales este medicamento no es recomendable.</p>
+                <h2>Tu Seguridad es Nuestra Prioridad</h2>
+                <p>Queremos cuidarte. Este es un tratamiento eficaz, pero no es para todas. Lee esto antes de comprar.</p>
             </div>
             <div class="consideraciones-wrapper">
                 <div class="consideraciones-card" data-aos="fade-right" data-aos-delay="100">
@@ -921,11 +1113,12 @@ body {
             </div>
         </div>
     </section>
-<section id="dieta-tratamiento">
+
+    <section id="dieta-tratamiento">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Dieta y Recomendaciones</h2>
-                <p>Maximiza los resultados de tu tratamiento con un estilo de vida saludable.</p>
+                <h2>Potencia tus Resultados: Qué SÍ y Qué NO</h2>
+                <p>Un pequeño ajuste en tu rutina hace una gran diferencia. Te guiamos para que te sientas ligera y con energía.</p>
             </div>
             
             <div class="dieta-wrapper">
@@ -936,7 +1129,7 @@ body {
                         <li><strong>Bebidas alcohólicas:</strong> Pueden intensificar gravemente los efectos secundarios y están contraindicadas.</li>
                         <li><strong>Cafeína en exceso:</strong> Limita café, té y bebidas energéticas. Pueden aumentar el nerviosismo o la taquicardia.</li>
                         <li><strong>Azúcares refinados:</strong> Dulces, pasteles y refrescos que aportan calorías vacías y dificultan tu progreso.</li>
-                        <li><strong>Alimentos ultraprocesados:</strong> Comidas rápidas y snacks empacados altos en sodio, grasas no saludables y conservantes.</li>
+                        <li><strong>Alimentos ultraprocesados:</strong> Comidas rápidas y snacks empacados altos en sodio y grasas no saludables.</li>
                     </ul>
                 </div>
                 
@@ -953,28 +1146,29 @@ body {
             </div>
         </div>
     </section>
+
     <section id="beneficios">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Ventajas de Elegirnos</h2>
-                <p>Tu confianza es nuestra prioridad. Te ofrecemos un servicio de calidad y seguridad en cada paso.</p>
+                <h2>Por Qué Confiar en Nosotras</h2>
+                <p>Entendemos tu decisión y te ofrecemos un servicio transparente, seguro y pensado para ti.</p>
             </div>
             
             <div class="beneficios-grid">
                 <div class="beneficio-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                    <h3>Cuidado y Bienestar</h3>
-                    <p>Comprometidos con tu salud, ofrecemos productos que complementan tu camino hacia el bienestar.</p>
+                    <div class="icon"><i class="fa-solid fa-shield-alt"></i></div>
+                    <h3>Producto 100% Original</h3>
+                    <p>Tu seguridad es total. Solo trabajamos con productos sellados, directamente de laboratorios Abbott y Saval.</p>
                 </div>
                 <div class="beneficio-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon"><i class="fa-solid fa-shield-alt"></i></div>
-                    <h3>Garantía de Originalidad</h3>
-                    <p>Solo trabajamos con productos 100% originales y sellados, directamente de laboratorios.</p>
+                    <div class="icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <h3>Te Acompañamos</h3>
+                    <p>No estás sola. Te ofrecemos asesoría real y cercana por WhatsApp para resolver todas tus dudas.</p>
                 </div>
                 <div class="beneficio-item" data-aos="fade-up" data-aos-delay="300">
                     <div class="icon"><i class="fa-solid fa-paper-plane"></i></div>
-                    <h3>Logística Eficiente</h3>
-                    <p>Despachos rápidos y seguros a nivel nacional, para que recibas tu pedido sin demoras.</p>
+                    <h3>Envío Rápido y Discreto</h3>
+                    <p>Recibe tu pedido sin demoras y en un empaque discreto. Cuidamos tu privacidad en cada paso.</p>
                 </div>
                 <div class="beneficio-item" data-aos="fade-up" data-aos-delay="400">
                     <div class="icon"><i class="fa-solid fa-comments"></i></div>
@@ -985,11 +1179,132 @@ body {
         </div>
     </section>
 
+    <section id="como-comprar">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Así de Fácil es Comprar con Nosotras</h2>
+                <p>Hemos creado un proceso de compra 100% seguro y transparente, estés donde estés.</p>
+            </div>
+            
+            <div class="como-comprar-wrapper">
+                <div class="como-comprar-card" data-aos="fade-right" data-aos-delay="100">
+                    <h3><i class="fa-solid fa-motorcycle"></i> Pago Contra Entrega en Lima</h3>
+                    <p>¡Cero riesgos, máxima confianza! Pides tu producto y lo pagas en efectivo, Yape o Plin al motorizado <strong>justo cuando lo recibes en tu domicilio.</strong></p>
+                    <p>Coordinamos la entrega para hoy mismo o para el día siguiente. ¡Así de simple!</p>
+                </div>
+                
+                <div class="como-comprar-card provincia" data-aos="fade-left" data-aos-delay="200">
+                    <h3><i class="fa-solid fa-truck-fast"></i> Envío Seguro a Provincia (Shalom)</h3>
+                    <p>Nuestro proceso para provincia es 100% transparente y seguro:</p>
+                    <ul>
+                        <li><span class="step">1</span> <strong>Coordinamos:</strong> Nos brindas tus datos completos para el envío por agencia Shalom.</li>
+                        <li><span class="step">2</span> <strong>Verificamos:</strong> Llevamos tu producto a la agencia y te enviamos tu <strong>boleta y un video</strong> del producto sellado a tu nombre.</li>
+                        <li><span class="step">3</span> <strong>Confirmas:</strong> Realizas el pago (BCP, Interbank, Yape o Plin) con total seguridad.</li>
+                        <li><span class="step">4</span> <strong>Recibes:</strong> ¡Te enviamos la clave de recojo al instante! Tu compra está 100% asegurada.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>💬 Preguntas Frecuentes</h2>
+                <p>Resolvemos tus dudas más comunes sobre Elvenir® y Obexol®.</p>
+            </div>
+            
+            <div class="faq-grid">
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <h3>1. ¿Qué son Elvenir® y Obexol®?</h3>
+                    <p>Son medicamentos que contienen <strong>Fentermina 37.5 mg</strong>, un supresor del apetito que actúa sobre el sistema nervioso central. Se utiliza como apoyo en el tratamiento para bajar de peso, junto con una dieta equilibrada y ejercicio.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <h3>2. ¿Para qué sirven?</h3>
+                    <p>Ayudan a <strong>controlar el apetito</strong>, reducir la ansiedad por comer y favorecer la pérdida de peso en personas con sobrepeso u obesidad, siempre como parte de un programa supervisado.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <h3>3. ¿Cuál es la dosis recomendada?</h3>
+                    <p>La dosis más habitual es <strong>una cápsula al día (37.5 mg)</strong>, por la mañana, antes o después del desayuno, con un vaso de agua.</p>
+                    <p class="warning-text">⚠️ Nunca se deben tomar dos dosis en el mismo día. No se recomienda su uso por más de 12 semanas sin evaluación médica.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <h3>4. ¿Cuánto dura una caja?</h3>
+                    <p>Cada caja contiene <strong>30 cápsulas</strong>, suficiente para un tratamiento de 30 días.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3>5. ¿Qué dieta debo seguir?</h3>
+                    <p>Se recomienda una alimentación balanceada y baja en carbohidratos refinados, con énfasis en:</p>
+                    <ul class="dieta-list">
+                        <li>Verduras y proteínas magras</li>
+                        <li>Hidratación constante (2–3 L de agua al día)</li>
+                        <li>Evitar alcohol, azúcares y comidas procesadas</li>
+                    </ul>
+                    <p>💡 <strong>En el programa completo se incluye un plan alimenticio personalizado.</strong></p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3>6. ¿Puedo hacer ejercicio?</h3>
+                    <p><strong>Sí 💪, se recomienda</strong> actividad física ligera o moderada (caminar, cardio, ejercicios funcionales). El ejercicio ayuda a potenciar los resultados y mantener el metabolismo activo.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3>7. ¿En cuánto tiempo se notan los resultados?</h3>
+                    <p>Depende del cuerpo de cada persona, pero muchos notan cambios visibles desde la <strong>primera semana</strong> (apetito y energía). La reducción de peso suele notarse entre la <strong>2.ª y 4.ª semana</strong>.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3>8. ¿Qué efectos secundarios pueden presentarse?</h3>
+                    <p>Al inicio pueden aparecer (suelen disminuir con los días):</p>
+                    <ul class="effects-list">
+                        <li>Dificultad para dormir</li>
+                        <li>Aceleración leve del pulso</li>
+                        <li>Sequedad bucal</li>
+                        <li>Sudoración o nerviosismo leve</li>
+                    </ul>
+                    <p>Si son intensos, suspender y consultar al médico.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <h3>9. ¿Quiénes NO deben tomar Fentermina?</h3>
+                    <p>No debe usarse en personas con:</p>
+                    <ul class="contra-list">
+                        <li>Enfermedades cardíacas, hipertensión no controlada.</li>
+                        <li>Problemas de tiroides o glaucoma.</li>
+                        <li>Embarazo o lactancia.</li>
+                        <li>Menores de 18 años.</li>
+                        <li>Uso reciente de antidepresivos o ansiolíticos.</li>
+                    </ul>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <h3>10. ¿Puedo combinar Elvenir® y Obexol®?</h3>
+                    <p><strong>No.</strong> Ambos contienen el mismo principio activo (Fentermina 37.5 mg), solo cambia el laboratorio fabricante. Se utiliza solo uno de ellos por tratamiento.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <h3>11. ¿Necesito receta médica?</h3>
+                    <p>La Fentermina debe usarse con orientación profesional. Por eso, en nuestro Programa Completo se incluye <strong>asesoramiento y seguimiento</strong> para garantizar un uso responsable.</p>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <h3>12. ¿Qué pasa si olvido tomar una cápsula?</h3>
+                    <p>Tómala tan pronto como lo recuerdes, si aún es temprano en el día. Si ya es tarde, <strong>omite la dosis</strong> y continúa al día siguiente. <strong>No tomes dos cápsulas juntas.</strong></p>
+                </div>
+
+            </div>
+        </div>
+    </section>
     <section id="cta" class="contacto">
     <div class="container" data-aos="zoom-in" data-aos-duration="1000">
-            <h2>¡Da el siguiente paso hacia tu mejor versión!</h2>
-            <p>Contáctanos hoy mismo por WhatsApp y descubre cómo Elvenir y Obexol pueden ser parte de tu transformación.</p>
-            <a href="https://wa.me/51900894032?text=Hola%2C%20quiero%20empezar%20mi%20tratamiento%20con%20Elvenir%2FObexol" target="_blank" class="btn">Habla con un Asesor <i class="fab fa-whatsapp"></i></a>
+            <h2>¿Lista para empezar tu transformación?</h2>
+            <p>No esperes más. Escríbenos ahora por WhatsApp y coordina tu pedido. La confianza y energía que buscas están a un clic de distancia.</p>
+            <a href="https://wa.me/51900894032?text=Hola!%20Estoy%20lista%20para%20comprar%20mi%20tratamiento%20(Elvenir%2FObexol)." target="_blank" class="btn">¡HACER MI PEDIDO AHORA! <i class="fab fa-whatsapp"></i></a>
         </div>
     </section>
 
@@ -997,7 +1312,7 @@ body {
         <div class="container">
             <div class="footer-content">
                 <a href="#hero" class="logo-footer">Bienestar Vital</a>
-                <p>Tu aliado en el camino hacia un estilo de vida más saludable.</p>
+                <p>Acompañándote en tu transformación hacia un estilo de vida más saludable.</p>
                 
                 <div class="social-icons">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -1012,7 +1327,7 @@ body {
         </div>
     </footer>
 
-    <a href="https://wa.me/51900894032?text=Hola%2C%20quisiera%20consultar%20sobre%20Elvenir%2FObexol" 
+    <a href="https://wa.me/51900894032?text=Hola!%20Quiero%20iniciar%20mi%20pedido%20de%20Elvenir%2FObexol" 
        class="whatsapp-float" 
        target="_blank" 
        aria-label="Contactar por WhatsApp">
@@ -1026,7 +1341,7 @@ body {
         AOS.init({
             duration: 1000,
             once: true,
-            offset: 100, /* Mayor offset para que las animaciones se vean mejor */
+            offset: 100,
         });
 
         const header = document.getElementById('header');
@@ -1039,7 +1354,6 @@ body {
             }
         });
 
-        // --- INICIO: LÓGICA PARA MENÚ MÓVIL ---
         const menuToggle = document.getElementById('menu-toggle');
         const navLinks = document.getElementById('nav-links');
         const navLinksAnchors = navLinks.querySelectorAll('a');
@@ -1047,15 +1361,12 @@ body {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             
-            // Actualiza el estado ARIA para accesibilidad
             const isExpanded = navLinks.classList.contains('active');
             menuToggle.setAttribute('aria-expanded', isExpanded);
             
-            // Cambia el ícono
             menuToggle.classList.toggle('active');
         });
 
-        // Cierra el menú al hacer clic en un enlace (para SPAs de una página)
         navLinksAnchors.forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinks.classList.contains('active')) {
@@ -1065,7 +1376,6 @@ body {
                 }
             });
         });
-        // --- FIN: LÓGICA PARA MENÚ MÓVIL ---
 
     </script>
 
