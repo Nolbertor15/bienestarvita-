@@ -1,1384 +1,581 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es-PE">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elvenir & Obexol - Inicia tu Transformación Hoy | Bienestar Vital</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        /* --- 1. Variables y Estilos Globales (V3) --- */
-        :root {
-            --color-primario: #EE4B70; /* Fucsia Vibrante */
-            --color-secundario: #6F42C1; /* Púrpura Profundo */
-            --color-terciario: #20C997; /* Turquesa Brillante */
-            --color-fondo-claro: #F8F9FA; /* Blanco grisáceo */
-            --color-texto-oscuro: #212529; /* Negro muy oscuro */
-            --color-texto-medio: #495057;
-            --color-borde: #DEE2E6; /* Gris para bordes sutiles */
-
-            --fuente-titulos: 'DM Sans', sans-serif;
-            --fuente-cuerpo: 'Inter', sans-serif;
-            --ancho-maximo: 1200px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--fuente-cuerpo);
-            color: var(--color-texto-medio);
-            line-height: 1.6;
-            background-color: #fff;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--fuente-titulos);
-            font-weight: 700;
-            color: var(--color-texto-oscuro);
-            margin-bottom: 15px;
-        }
-        
-        h1 { font-size: 3.8rem; line-height: 1.1; }
-        h2 { font-size: 2.8rem; }
-        h3 { font-size: 2.2rem; }
-
-        p {
-            margin-bottom: 20px;
-            color: var(--color-texto-medio);
-            font-size: 1.05rem;
-        }
-
-        .container {
-            max-width: var(--ancho-maximo);
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        section {
-            padding: 100px 0;
-        }
-        
-        /* --- 2. Header y Navegación (V3) --- */
-        .header {
-            background-color: #fff;
-            padding: 18px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-        }
-
-        .header.scrolled {
-            padding: 12px 0;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: var(--ancho-maximo);
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        .logo {
-            font-family: var(--fuente-titulos);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--color-primario);
-            text-decoration: none;
-            z-index: 1001;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 35px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--color-texto-oscuro);
-            font-weight: 600;
-            position: relative;
-            padding-bottom: 8px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background-color: var(--color-primario);
-            transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .nav-links a:hover {
-            color: var(--color-primario);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-.menu-toggle {
-    display: none;
-    font-size: 1.8rem;
-    color: var(--color-texto-oscuro);
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1011;
-    padding: 5px;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-        
-        .menu-toggle:hover {
-            color: var(--color-primario);
-            transform: rotate(90deg);
-        }
-
-        /* --- 3. Sección Hero (ENFOQUE FEMENINO) --- */
-        .hero {
-            height: 100vh;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding-top: 100px;
-            background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
-            background-size: cover;
-            background-position: center center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            color: #fff;
-            margin-bottom: 25px;
-            font-weight: 800;
-            text-shadow: 3px 3px 12px rgba(0,0,0,0.5);
-            letter-spacing: -2px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.95);
-            margin-bottom: 40px;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-            font-weight: 300;
-        }
-
-        .btn {
-            text-decoration: none;
-            color: #fff;
-            background-color: var(--color-primario);
-            padding: 18px 45px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.15rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-block;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-7px) scale(1.03);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            filter: brightness(1.15);
-        }
-
-        .btn-secondary {
-            background-color: var(--color-terciario); /* Color cambiado para CTA más fuerte */
-            margin-left: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--color-terciario);
-            transform: translateY(-7px) scale(1.03);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            filter: brightness(1.15);
-        }
-        
-        /* --- 4. Sección Productos (V3) --- */
-        #productos {
-            background-color: var(--color-fondo-claro);
-            padding-bottom: 50px; 
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-title h2 {
-            font-size: 3rem;
-            color: var(--color-texto-oscuro);
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .productos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-        }
-
-        .producto-card {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            padding: 40px 30px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .producto-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            transition: 0.6s;
-        }
-
-        .producto-card:hover::before {
-            left: 100%;
-        }
-
-        .producto-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.18);
-        }
-
-        .producto-card img {
-            max-width: 80%;
-            height: auto;
-            margin: 0 auto 25px auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        
-        .producto-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .producto-card h3 {
-            font-size: 2rem;
-            color: var(--color-texto-oscuro);
-            margin-bottom: 10px;
-        }
-
-        .producto-card .marca {
-            font-size: 1.1rem;
-            color: var(--color-terciario);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-        }
-        
-        .producto-card .description {
-            font-size: 1.05rem;
-            color: var(--color-texto-medio);
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-
-        /* --- 5. Sección Consideraciones (REENFOCADA) --- */
-        #consideraciones {
-            background-color: #fff;
-            padding-top: 50px;
-            padding-bottom: 100px;
-        }
-        
-        .consideraciones-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-        }
-
-        @media (min-width: 769px) {
-            .consideraciones-wrapper {
-                flex-direction: row;
-                justify-content: center;
-                align-items: flex-start;
-            }
-        }
-
-        .consideraciones-card {
-            background-color: var(--color-fondo-claro);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 600px;
-            flex-grow: 1;
-        }
-
-        .consideraciones-card.advertencia-list {
-            background-color: var(--color-texto-oscuro); 
-            color: #fff;
-            box-shadow: 0 15px 40px rgba(0,0,0, 0.3);
-        }
-        
-        .consideraciones-card.advertencia-list h3 {
-            color: #fff;
-            margin-bottom: 25px;
-            font-size: 2rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .consideraciones-card h3 {
-            color: var(--color-texto-oscuro);
-            font-size: 2rem;
-            margin-bottom: 25px;
-        }
-
-        .consideraciones-card p {
-            color: var(--color-texto-medio);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-
-        .consideraciones-card.advertencia-list p {
-             color: #ffffff;
-             font-weight: 400;
-             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .consideraciones-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .consideraciones-card ul li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            line-height: 1.5;
-            color: #ffffff;
-            font-weight: 500;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .consideraciones-card ul li:last-child {
-            margin-bottom: 0;
-        }
-
-        .consideraciones-card ul li i {
-            position: absolute;
-            left: 0;
-            top: 3px;
-            font-size: 1.5rem;
-            color: #fff;
-        }
-
-        /* --- 5.5. Sección Dieta (REENFOCADA) --- */
-        #dieta-tratamiento {
-            background-color: var(--color-fondo-claro); /* Fondo claro para alternar */
-            padding-top: 50px;
-            padding-bottom: 100px;
-        }
-
-        .dieta-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-        }
-
-        @media (min-width: 769px) {
-            .dieta-wrapper {
-                flex-direction: row;
-                justify-content: center;
-                align-items: flex-start;
-            }
-        }
-
-        .dieta-card {
-            background-color: #fff; /* Fondo blanco */
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 600px;
-            flex-grow: 1;
-            border-left: 5px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-        
-        .dieta-card:hover {
-             border-left-color: var(--color-secundario);
-        }
-
-        .dieta-card h3 {
-            font-size: 2rem;
-            color: var(--color-texto-oscuro);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-        }
-
-        .dieta-card h3 i {
-            margin-right: 15px;
-            font-size: 2.2rem;
-        }
-
-        .dieta-card:first-child h3 i {
-            color: var(--color-primario);
-        }
-        
-        .dieta-card:last-child h3 i {
-            color: var(--color-terciario);
-        }
-
-        .dieta-card p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .dieta-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .dieta-card ul li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 12px;
-            font-size: 1.05rem;
-            color: var(--color-texto-medio);
-            line-height: 1.5;
-        }
-
-        .dieta-card ul li::before {
-            content: '•';
-            position: absolute;
-            left: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--color-secundario);
-        }
-
-        .dieta-card ul li strong {
-            color: var(--color-texto-oscuro);
-            font-weight: 600;
-        }
-
-        /* --- 6. Sección Beneficios (REENFOCADA) --- */
-        #beneficios {
-            background-color: #fff; /* Fondo blanco */
-            padding-top: 50px;
-        }
-
-        .beneficios-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .beneficio-item {
-            background: var(--color-fondo-claro); /* Fondo claro */
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .beneficio-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .beneficio-item .icon {
-            font-size: 3.8rem;
-            color: var(--color-terciario);
-            margin-bottom: 25px;
-            display: inline-block;
-            transition: color 0.3s ease;
-        }
-        
-        .beneficio-item:hover .icon {
-            color: var(--color-primario);
-        }
-
-        .beneficio-item h3 {
-            font-size: 1.8rem;
-            color: var(--color-texto-oscuro);
-            font-family: var(--fuente-titulos);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .beneficio-item p {
-            font-size: 1.05rem;
-            color: var(--color-texto-medio);
-        }
-
-
-        /* --- 7. NUEVA SECCIÓN: CÓMO COMPRAR (LOGÍSTICA) --- */
-        #como-comprar {
-            background-color: var(--color-fondo-claro);
-            padding-bottom: 100px;
-        }
-
-        .como-comprar-wrapper {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-
-        @media (min-width: 769px) {
-            .como-comprar-wrapper {
-                grid-template-columns: 1fr 1fr; /* Dos columnas en desktop */
-            }
-        }
-
-        .como-comprar-card {
-            background-color: #fff;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            border-top: 5px solid var(--color-primario);
-        }
-        
-        .como-comprar-card.provincia {
-             border-top-color: var(--color-secundario);
-        }
-
-        .como-comprar-card h3 {
-            font-size: 2rem;
-            color: var(--color-texto-oscuro);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .como-comprar-card h3 i {
-            margin-right: 15px;
-            font-size: 2.2rem;
-            color: var(--color-primario);
-        }
-        
-        .como-comprar-card.provincia h3 i {
-            color: var(--color-secundario);
-        }
-
-        .como-comprar-card p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .como-comprar-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .como-comprar-card ul li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-            color: var(--color-texto-medio);
-            line-height: 1.5;
-        }
-        
-        .como-comprar-card ul li .step {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 25px;
-            height: 25px;
-            background-color: var(--color-secundario);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .como-comprar-card ul li strong {
-            color: var(--color-texto-oscuro);
-            font-weight: 600;
-        }
-
-        /* --- 7.5. INICIO NUEVA SECCIÓN: PREGUNTAS FRECUENTES (FAQ) --- */
-        #faq {
-            background-color: #fff; /* Fondo blanco, alterna con la sección anterior */
-            padding-top: 50px; 
-            padding-bottom: 50px; 
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* 1 columna en móvil */
-            gap: 30px;
-        }
-
-        @media (min-width: 992px) {
-            .faq-grid {
-                grid-template-columns: 1fr 1fr; /* 2 columnas en desktop */
-            }
-        }
-
-        .faq-item {
-            background: var(--color-fondo-claro); /* Fondo grisáceo claro para las tarjetas */
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .faq-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-        }
-
-        .faq-item h3 {
-            font-size: 1.5rem; /* Tamaño de H3 ajustado para FAQ */
-            color: var(--color-texto-oscuro);
-            font-family: var(--fuente-titulos);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .faq-item p,
-        .faq-item ul {
-            font-size: 1rem;
-            color: var(--color-texto-medio);
-            margin-bottom: 15px;
-        }
-
-        .faq-item ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .faq-item ul li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 10px;
-        }
-
-        /* Estilo genérico para viñetas de lista */
-        .faq-item ul li::before {
-            content: '•';
-            color: var(--color-primario);
-            position: absolute;
-            left: 10px;
-            font-weight: 700;
-        }
-
-        /* Emojis específicos para la lista de dieta (Q5) */
-        .faq-item ul.dieta-list li:nth-child(1)::before { content: '🥦'; left: 8px; }
-        .faq-item ul.dieta-list li:nth-child(2)::before { content: '💧'; left: 8px; }
-        .faq-item ul.dieta-list li:nth-child(3)::before { content: '🚫'; left: 8px; }
-        
-        /* Emojis para la lista de efectos (Q8) */
-        .faq-item ul.effects-list li:nth-child(1)::before { content: '😴'; left: 8px; }
-        .faq-item ul.effects-list li:nth-child(2)::before { content: '❤️'; left: 8px; }
-        .faq-item ul.effects-list li:nth-child(3)::before { content: '😬'; left: 8px; }
-        .faq-item ul.effects-list li:nth-child(4)::before { content: '💧'; left: 8px; }
-
-        /* Emojis para la lista de contraindicaciones (Q9) */
-        .faq-item ul.contra-list li::before {
-            content: '🚫'; left: 8px;
-        }
-        
-        .faq-item p:last-child {
-            margin-bottom: 0;
-        }
-
-        .faq-item strong {
-             color: var(--color-texto-oscuro);
-             font-weight: 600;
-        }
-        
-        .faq-item .warning-text {
-            color: var(--color-primario);
-            font-weight: 700;
-            display: block; /* Para que ocupe su propia línea */
-            margin-top: 10px;
-        }
-        /* --- 7.5. FIN NUEVA SECCIÓN: PREGUNTAS FRECUENTES (FAQ) --- */
-
-
-        /* --- 8. Sección CTA (REENFOCADA A COMPRA) --- */
-        #cta {
-            background: linear-gradient(45deg, var(--color-primario), var(--color-secundario));
-            color: #fff;
-            text-align: center;
-            padding: 120px 0;
-        }
-        
-        #cta h2 {
-            font-size: 3.8rem;
-            color: #fff;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-        }
-        
-        #cta p {
-            font-size: 1.6rem;
-            color: rgba(255,255,255,0.95);
-            margin-bottom: 45px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 300;
-        }
-        
-        #cta .btn {
-            background-color: #fff;
-            color: var(--color-primario);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-            font-size: 1.3rem; /* Botón más grande */
-            padding: 20px 50px;
-        }
-        
-        #cta .btn:hover {
-            color: var(--color-secundario);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-        }
-        
-        /* --- 9. Footer (V3) --- */
-        .footer {
-            background-color: var(--color-texto-oscuro);
-            color: #AAB7C4;
-            padding: 80px 0 40px 0;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-        
-        .footer-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .footer .logo-footer {
-            font-family: var(--fuente-titulos);
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            margin-bottom: 25px;
-            display: inline-block;
-        }
-        
-        .footer p {
-            color: #AAB7C4;
-            font-size: 1rem;
-            margin-bottom: 25px;
-        }
-        
-        .footer .social-icons {
-            margin-bottom: 30px;
-        }
-        
-        .footer .social-icons a {
-            color: #fff;
-            font-size: 1.6rem;
-            margin: 0 15px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .footer .social-icons a:hover {
-            color: var(--color-primario);
-            transform: translateY(-5px) scale(1.1);
-        }
-        
-        .footer .copyright {
-            margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 30px;
-            font-size: 0.88rem;
-            color: #8C98A4;
-        }
-        
-        /* --- 10. Botón Flotante WhatsApp (V3) --- */
-        .whatsapp-float {
-            position: fixed;
-            background-color: #25D366;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            color: #fff;
-            text-decoration: none;
-            bottom: 35px;
-            right: 35px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            animation: pulse-whatsapp 2s infinite;
-            z-index: 999;
-            transition: all 0.3s ease;
-        }
-        
-        .whatsapp-float:hover {
-            animation-play-state: paused;
-            transform: scale(1.2);
-            filter: brightness(1.15);
-        }
-
-        @keyframes pulse-whatsapp {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 25px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-        }
-        
-        /* --- 11. Responsive Design (V3) --- */
-        @media (max-width: 992px) {
-            h1 { font-size: 3.2rem; }
-            h2 { font-size: 2.5rem; }
-            h3 { font-size: 1.8rem; }
-            .hero p { font-size: 1.2rem; }
-            .section-title h2 { font-size: 2.2rem; }
-            .btn { padding: 15px 30px; font-size: 1rem; }
-            .productos-grid { gap: 30px; }
-            .beneficios-grid { gap: 30px; }
-            
-            .consideraciones-card h3, .consideraciones-card.advertencia-list h3 { font-size: 1.8rem; }
-            .consideraciones-card p, .consideraciones-card ul li { font-size: 1rem; }
-            .dieta-card h3 { font-size: 1.8rem; }
-            .dieta-card p, .dieta-card ul li { font-size: 1rem; }
-            .como-comprar-card h3 { font-size: 1.8rem; }
-            .como-comprar-card p, .como-comprar-card ul li { font-size: 1rem; }
-            .faq-item h3 { font-size: 1.4rem; } /* Ajuste responsive FAQ */
-            .faq-item p, .faq-item ul { font-size: 0.95rem; }
-
-            #cta h2 { font-size: 2.8rem; }
-            #cta p { font-size: 1.3rem; }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background-color: #fff;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-                transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                padding-top: 60px;
-                z-index: 1010;
-            }
-            .dieta-card { padding: 30px; }
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links li {
-                margin: 0;
-                width: 100%;
-                text-align: center;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 22px 0;
-                font-size: 1.4rem;
-                font-family: var(--fuente-titulos);
-                color: var(--color-texto-oscuro);
-            }
-            
-            .nav-links a:hover {
-                background-color: var(--color-fondo-claro);
-                color: var(--color-primario);
-            }
-
-            .nav-links a::after {
-                display: none;
-            }
-            
-            .menu-toggle.active i {
-                transform: rotate(180deg);
-            }
-            .menu-toggle.active .fa-bars {
-                display: none;
-            }
-            .menu-toggle .fa-times {
-                display: none;
-            }
-            .menu-toggle.active .fa-times {
-                display: block;
-            }
-            
-            .hero {
-                padding-top: 120px;
-                min-height: 500px;
-            }
-            .hero h1 {
-                font-size: 2.8rem;
-                letter-spacing: -1px;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-                margin-bottom: 30px;
-            }
-            
-            .btn {
-                width: 90%;
-                margin: 10px auto;
-                display: block;
-            }
-            .btn-secondary {
-                margin-left: auto;
-            }
-            
-            .productos-grid,
-            .beneficios-grid,
-            .faq-grid { /* FAQ a 1 columna en móvil */
-                grid-template-columns: 1fr;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-            
-            #cta h2 { font-size: 2.2rem; }
-            #cta p { font-size: 1.1rem; }
-            
-            .whatsapp-float {
-                width: 60px;
-                height: 60px;
-                font-size: 2.6rem;
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .consideraciones-wrapper {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .consideraciones-card {
-                padding: 30px;
-            }
-            .como-comprar-card { padding: 30px; }
-            .faq-item { padding: 30px; } /* Padding responsive FAQ */
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elvenir, Obexol O Istaril | Fentermina 37.5 mg | Envíos a todo Perú</title>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="description" content="Elvenir y Obexol originales con Fentermina 37.5 mg. Asesoría por WhatsApp, pago contra entrega y envíos a todo el Perú. Consulta médica recomendada.">
+  <meta name="theme-color" content="#EE4B70">
+  <link rel="canonical" href="https://tudominio.pe/">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --color-primario:#EE4B70;
+      --color-secundario:#6F42C1;
+      --color-terciario:#20C997;
+      --color-fondo:#F8F9FA;
+      --color-texto:#212529;
+      --color-texto-medio:#495057;
+      --color-borde:#DEE2E6;
+      --maxw:1200px;
+      --radius:14px;
+      --shadow-md:0 8px 24px rgba(0,0,0,.08);
+      --shadow-lg:0 14px 40px rgba(0,0,0,.12);
+      --step--1:clamp(.95rem,.85rem + .5vw,1.05rem);
+      --step-0:clamp(1rem,.9rem + .8vw,1.125rem);
+      --step-1:clamp(1.25rem,1.1rem + 1.2vw,1.5rem);
+      --step-2:clamp(1.6rem,1.2rem + 2.2vw,2.2rem);
+      --step-3:clamp(2rem,1.5rem + 3vw,2.8rem);
+    }
+    *{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      color:var(--color-texto);
+      background:var(--color-fondo);
+      font-size:var(--step-0);
+      line-height:1.6;
+      text-rendering:optimizeLegibility;
+    }
+    img{max-width:100%;height:auto;display:block;border-radius:12px}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+      padding:.9rem 1.15rem;border-radius:12px;border:1px solid transparent;
+      font-weight:600;text-align:center;transition:transform .12s ease,background .2s ease,border-color .2s ease,color .2s ease;
+      cursor:pointer;touch-action:manipulation
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn:focus-visible{outline:3px solid rgba(32,201,151,.55);outline-offset:2px}
+    .btn-primary{background:var(--color-primario);color:#fff}
+    .btn-primary:hover{filter:brightness(.96)}
+    .btn-outline{background:#fff;border-color:var(--color-borde);color:var(--color-texto)}
+    .btn-outline:hover{border-color:#cfd4da}
+    .badge{
+      display:inline-block;padding:.25rem .6rem;border-radius:999px;font-size:.8rem;font-weight:600
+    }
+    header{
+      position:sticky;top:0;z-index:1000;background:#fff;
+      box-shadow:0 0 0 rgba(0,0,0,0);
+      transition:box-shadow .25s ease,background .25s ease,padding .25s ease
+    }
+    .topbar{background:var(--color-primario);color:#fff;font-size:.9rem}
+    .topbar .container{display:flex;justify-content:center;align-items:center;padding:.4rem 20px}
+    .header-inner{
+      padding:calc(10px + env(safe-area-inset-top)) 0 10px 0
+    }
+    header.scrolled{box-shadow:var(--shadow-md)}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:16px
+    }
+    .brand{
+      display:flex;align-items:center;gap:.6rem;font-family:"DM Sans",Inter,sans-serif;font-weight:700;letter-spacing:-.4px
+    }
+    .brand .logo{
+      width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--color-primario),var(--color-secundario));
+      display:grid;place-items:center;color:#fff;font-size:1rem
+    }
+    .nav-links{
+      display:flex;gap:16px;align-items:center
+    }
+    .nav-links a{padding:.55rem .7rem;border-radius:10px;color:var(--color-texto-medio)}
+    .nav-links a:hover{background:#f1f3f5;color:var(--color-texto)}
+    .menu-toggle{
+      display:none;border:1px solid var(--color-borde);background:#fff;border-radius:10px;padding:.55rem .7rem;font-weight:600
+    }
+    .hero{
+      position:relative;padding:40px 0 24px 0;background:
+        radial-gradient(1200px 500px at 80% -50%,rgba(111,66,193,.18),transparent 60%),
+        radial-gradient(1000px 400px at -10% -40%,rgba(238,75,112,.16),transparent 60%)
+    }
+    .hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+    .hero h1{
+      font-family:"DM Sans",Inter,sans-serif;font-size:var(--step-3);line-height:1.12;letter-spacing:-.5px;margin:0 0 .6rem 0
+    }
+    .hero p{color:var(--color-texto-medio);margin:0 0 1rem 0}
+    .hero-cta{display:flex;gap:.6rem;flex-wrap:wrap}
+    .card{
+      background:#fff;border:1px solid var(--color-borde);border-radius:var(--radius);box-shadow:var(--shadow-md)
+    }
+    .card-body{padding:20px}
+    .grid{
+      display:grid;gap:18px
+    }
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .section{padding:36px 0}
+    .section h2{
+      font-family:"DM Sans",Inter,sans-serif;font-size:var(--step-2);line-height:1.15;letter-spacing:-.4px;margin:0 0 10px 0
+    }
+    .muted{color:var(--color-texto-medio)}
+    .list{margin:0;padding-left:1.1rem}
+    .list li{margin:.35rem 0}
+    .product{
+      display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center
+    }
+    .product .meta{display:flex;flex-direction:column;gap:.4rem}
+    .product .meta .title{font-weight:700}
+    .pill{border:1px solid var(--color-borde);padding:.25rem .5rem;border-radius:999px;font-size:.85rem;color:var(--color-texto-medio)}
+    .note{
+      background:#fff;border:1px dashed var(--color-borde);border-radius:14px;padding:14px;color:var(--color-texto-medio)
+    }
+    .faq details{border:1px solid var(--color-borde);border-radius:12px;background:#fff;padding:12px}
+    .faq details+details{margin-top:10px}
+    .faq summary{cursor:pointer;font-weight:600;list-style:none}
+    .faq summary::-webkit-details-marker{display:none}
+    .cta-float{
+      position:fixed;z-index:999;right:calc(16px + env(safe-area-inset-right));
+      bottom:calc(16px + env(safe-area-inset-bottom));
+    }
+    .cta-float .btn{box-shadow:var(--shadow-lg)}
+    footer{padding:28px 0;color:var(--color-texto-medio)}
+    @media (max-width:1024px){
+      .hero-inner{grid-template-columns:1fr}
+      .product{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:720px){
+      .nav-links{display:none}
+      .menu-toggle{display:inline-flex}
+      .nav-panel{
+        position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:saturate(140%) blur(4px);
+        opacity:0;visibility:hidden;transition:opacity .2s ease;z-index:998
+      }
+      .nav-panel.active{opacity:1;visibility:visible}
+      .nav-sheet{
+        position:absolute;right:0;top:0;height:100%;width:min(88vw,380px);
+        background:#fff;border-left:1px solid var(--color-borde);padding:16px;display:flex;flex-direction:column;gap:8px
+      }
+      .nav-sheet a{padding:.9rem;border-radius:10px;color:var(--color-texto)}
+      .nav-sheet a:hover{background:#f1f3f5}
+      .hero{padding:28px 0 18px 0}
+      .hero-cta .btn{width:100%}
+
+      /* --- INICIO DE LA CORRECCIÓN --- */
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        /* Hacemos que todas las grids pasen a 1 columna en móvil */
+        grid-template-columns: 1fr;
+      }
+      .hero-inner {
+        /* La imagen del hero ya se apila por la regla de 1024px */
+        /* Solo reducimos el espacio en móvil */
+        gap: 18px;
+      }
+      /* La clase .product (imagen + texto) ya se apila por */
+      /* la regla de 1024px, así que no es necesario repetirla */
+      /* --- FIN DE LA CORRECCIÓN --- */
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+    }
+    .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{left:8px;top:8px;width:auto;height:auto;background:#fff;border:2px solid var(--color-primario);padding:.5rem 1rem;border-radius:10px;z-index:1001}
+  </style>
 </head>
 <body>
+  <a class="skip" href="#main">Saltar al contenido</a>
 
-    <header class="header" id="header">
-        <nav class="navbar">
-            <a href="#hero" class="logo">Bienestar Vital</a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#productos">PRODUCTOS</a></li>
-                <li><a href="#beneficios">NOSOTROS</a></li>
-                <li><a href="#como-comprar">Cómo Comprar</a></li>
-                <li><a href="#dieta-tratamiento">Dieta</a></li>
-                <li><a href="#faq">Preguntas</a></li>
-                <li><a href="#cta">¡Pedir Ahora!</a></li>
-            </ul>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-                <i class="fas fa-bars" aria-hidden="true"></i>
-                <i class="fas fa-times" aria-hidden="true"></i>
-            </button>
-            </nav>
-    </header>
+  <div class="topbar">
+    <div class="container">Productos 100% originales. Envío rápido a todo el Perú.</div>
+  </div>
 
-    <section class="hero" id="hero">
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
-            <h1>Inicia tu transformación y siéntete increíble</h1>
-            <p>Sabemos que buscas un cambio real. Con Elvenir y Obexol originales, te acompañamos a recuperar tu energía y confianza. 100% originales, con envío a todo Perú.</p>
-            <a href="#productos" class="btn">Ver Productos</a>
-            <a href="https://wa.me/51900894032?text=Hola!%20Quiero%20iniciar%20mi%20pedido%20de%20Elvenir%2FObexol" target="_blank" class="btn btn-secondary">¡Pídelo Aquí por WhatsApp! <i class="fab fa-whatsapp"></i></a>
-        </div>
-    </section>
-
-    <section id="productos">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Tus Aliados en el Proceso</h2>
-                <p>Elige el apoyo ideal para tu meta. Ambos con Fentermina Clorhidrato 37.5 mg, 100% originales y sellados.</p>
-            </div>
-            
-            <div class="productos-grid">
-                <div class="producto-card" data-aos="fade-up" data-aos-delay="100">
-                    <img src="obexol.jpeg" alt="Caja de Obexol 37.5mg" loading="lazy">
-                    <span class="marca">Laboratorio Saval</span>
-                    <h3>Obexol® 37.5mg</h3>
-                    <p class="description">Apoyo bioequivalente con Fentermina Clorhidrato 37.5 mg, diseñado para complementar tu estilo de vida activo.</p>
-                </div>
-                
-                <div class="producto-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="ELVENIR.png" alt="Caja de Elvenir 37.5mg" loading="lazy">
-                    <span class="marca">Laboratorio Abbott</span>
-                    <h3>Elvenir® 37.5mg</h3>
-                    <p class="description">La fórmula original de Fentermina Clorhidrato 37.5 mg, tu aliado para la gestión del bienestar.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="consideraciones">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Tu Seguridad es Nuestra Prioridad</h2>
-                <p>Queremos cuidarte. Este es un tratamiento eficaz, pero no es para todas. Lee esto antes de comprar.</p>
-            </div>
-            <div class="consideraciones-wrapper">
-                <div class="consideraciones-card" data-aos="fade-right" data-aos-delay="100">
-                    <h3>Consulta siempre a tu médico</h3>
-                    <p>La información aquí proporcionada es solo para fines educativos. Antes de iniciar cualquier tratamiento, es fundamental que consultes con un profesional de la salud.</p>
-                    <p>Un diagnóstico y seguimiento médico adecuado garantizan tu seguridad y la eficacia del tratamiento.</p>
-                </div>
-                <div class="consideraciones-card advertencia-list" data-aos="fade-left" data-aos-delay="200">
-                    <h3>No uses este medicamento si:</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-triangle-exclamation"></i> Tienes enfermedades cardíacas o presión arterial alta.</li>
-                        <li><i class="fa-solid fa-triangle-exclamation"></i> Sufres de hipertiroidismo o glaucoma.</li>
-                        <li><i class="fa-solid fa-triangle-exclamation"></i> Tienes antecedentes de abuso de sustancias.</li>
-                        <li><i class="fa-solid fa-triangle-exclamation"></i> Estás embarazada o en período de lactancia.</li>
-                        <li><i class="fa-solid fa-triangle-exclamation"></i> Estás tomando otros inhibidores de la MAO.</li>
-                        <li><i class="fa-solid fa-triangle-exclamation"></i> Eres menor de 16 años.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="dieta-tratamiento">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Potencia tus Resultados: Qué SÍ y Qué NO</h2>
-                <p>Un pequeño ajuste en tu rutina hace una gran diferencia. Te guiamos para que te sientas ligera y con energía.</p>
-            </div>
-            
-            <div class="dieta-wrapper">
-                <div class="dieta-card" data-aos="fade-right" data-aos-delay="100">
-                    <h3><i class="fas fa-times-circle"></i> Qué Evitar</h3>
-                    <p>Para asegurar la efectividad y reducir efectos secundarios, limita al máximo el consumo de:</p>
-                    <ul>
-                        <li><strong>Bebidas alcohólicas:</strong> Pueden intensificar gravemente los efectos secundarios y están contraindicadas.</li>
-                        <li><strong>Cafeína en exceso:</strong> Limita café, té y bebidas energéticas. Pueden aumentar el nerviosismo o la taquicardia.</li>
-                        <li><strong>Azúcares refinados:</strong> Dulces, pasteles y refrescos que aportan calorías vacías y dificultan tu progreso.</li>
-                        <li><strong>Alimentos ultraprocesados:</strong> Comidas rápidas y snacks empacados altos en sodio y grasas no saludables.</li>
-                    </ul>
-                </div>
-                
-                <div class="dieta-card" data-aos="fade-left" data-aos-delay="200">
-                    <h3><i class="fas fa-check-circle"></i> Qué Priorizar</h3>
-                    <p>Enfoca tu alimentación en comidas nutritivas, balanceadas y que te brinden saciedad:</p>
-                    <ul>
-                        <li><strong>Proteínas magras:</strong> Pollo, pavo, pescado, huevos y legumbres. Ayudan a mantener la saciedad.</li>
-                        <li><strong>Vegetales abundantes:</strong> Prioriza verduras de hoja verde y una gran variedad de colores en tus ensaladas.</li>
-                        <li><strong>Grasas saludables:</strong> Porciones moderadas de aguacate (palta), frutos secos y aceite de oliva.</li>
-                        <li><strong>Hidratación constante:</strong> Bebe abundante agua durante todo el día, es fundamental para el proceso.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="beneficios">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Por Qué Confiar en Nosotras</h2>
-                <p>Entendemos tu decisión y te ofrecemos un servicio transparente, seguro y pensado para ti.</p>
-            </div>
-            
-            <div class="beneficios-grid">
-                <div class="beneficio-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon"><i class="fa-solid fa-shield-alt"></i></div>
-                    <h3>Producto 100% Original</h3>
-                    <p>Tu seguridad es total. Solo trabajamos con productos sellados, directamente de laboratorios Abbott y Saval.</p>
-                </div>
-                <div class="beneficio-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                    <h3>Te Acompañamos</h3>
-                    <p>No estás sola. Te ofrecemos asesoría real y cercana por WhatsApp para resolver todas tus dudas.</p>
-                </div>
-                <div class="beneficio-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="icon"><i class="fa-solid fa-paper-plane"></i></div>
-                    <h3>Envío Rápido y Discreto</h3>
-                    <p>Recibe tu pedido sin demoras y en un empaque discreto. Cuidamos tu privacidad en cada paso.</p>
-                </div>
-                <div class="beneficio-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="icon"><i class="fa-solid fa-comments"></i></div>
-                    <h3>Soporte Directo</h3>
-                    <p>Asesoría personalizada y cercana a través de WhatsApp para todas tus consultas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="como-comprar">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Así de Fácil es Comprar con Nosotras</h2>
-                <p>Hemos creado un proceso de compra 100% seguro y transparente, estés donde estés.</p>
-            </div>
-            
-            <div class="como-comprar-wrapper">
-                <div class="como-comprar-card" data-aos="fade-right" data-aos-delay="100">
-                    <h3><i class="fa-solid fa-motorcycle"></i> Pago Contra Entrega en Lima</h3>
-                    <p>¡Cero riesgos, máxima confianza! Pides tu producto y lo pagas en efectivo, Yape o Plin al motorizado <strong>justo cuando lo recibes en tu domicilio.</strong></p>
-                    <p>Coordinamos la entrega para hoy mismo o para el día siguiente. ¡Así de simple!</p>
-                </div>
-                
-                <div class="como-comprar-card provincia" data-aos="fade-left" data-aos-delay="200">
-                    <h3><i class="fa-solid fa-truck-fast"></i> Envío Seguro a Provincia (Shalom)</h3>
-                    <p>Nuestro proceso para provincia es 100% transparente y seguro:</p>
-                    <ul>
-                        <li><span class="step">1</span> <strong>Coordinamos:</strong> Nos brindas tus datos completos para el envío por agencia Shalom.</li>
-                        <li><span class="step">2</span> <strong>Verificamos:</strong> Llevamos tu producto a la agencia y te enviamos tu <strong>boleta y un video</strong> del producto sellado a tu nombre.</li>
-                        <li><span class="step">3</span> <strong>Confirmas:</strong> Realizas el pago (BCP, Interbank, Yape o Plin) con total seguridad.</li>
-                        <li><span class="step">4</span> <strong>Recibes:</strong> ¡Te enviamos la clave de recojo al instante! Tu compra está 100% asegurada.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>💬 Preguntas Frecuentes</h2>
-                <p>Resolvemos tus dudas más comunes sobre Elvenir® y Obexol®.</p>
-            </div>
-            
-            <div class="faq-grid">
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <h3>1. ¿Qué son Elvenir® y Obexol®?</h3>
-                    <p>Son medicamentos que contienen <strong>Fentermina 37.5 mg</strong>, un supresor del apetito que actúa sobre el sistema nervioso central. Se utiliza como apoyo en el tratamiento para bajar de peso, junto con una dieta equilibrada y ejercicio.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <h3>2. ¿Para qué sirven?</h3>
-                    <p>Ayudan a <strong>controlar el apetito</strong>, reducir la ansiedad por comer y favorecer la pérdida de peso en personas con sobrepeso u obesidad, siempre como parte de un programa supervisado.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <h3>3. ¿Cuál es la dosis recomendada?</h3>
-                    <p>La dosis más habitual es <strong>una cápsula al día (37.5 mg)</strong>, por la mañana, antes o después del desayuno, con un vaso de agua.</p>
-                    <p class="warning-text">⚠️ Nunca se deben tomar dos dosis en el mismo día. No se recomienda su uso por más de 12 semanas sin evaluación médica.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <h3>4. ¿Cuánto dura una caja?</h3>
-                    <p>Cada caja contiene <strong>30 cápsulas</strong>, suficiente para un tratamiento de 30 días.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <h3>5. ¿Qué dieta debo seguir?</h3>
-                    <p>Se recomienda una alimentación balanceada y baja en carbohidratos refinados, con énfasis en:</p>
-                    <ul class="dieta-list">
-                        <li>Verduras y proteínas magras</li>
-                        <li>Hidratación constante (2–3 L de agua al día)</li>
-                        <li>Evitar alcohol, azúcares y comidas procesadas</li>
-                    </ul>
-                    <p>💡 <strong>En el programa completo se incluye un plan alimenticio personalizado.</strong></p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <h3>6. ¿Puedo hacer ejercicio?</h3>
-                    <p><strong>Sí 💪, se recomienda</strong> actividad física ligera o moderada (caminar, cardio, ejercicios funcionales). El ejercicio ayuda a potenciar los resultados y mantener el metabolismo activo.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <h3>7. ¿En cuánto tiempo se notan los resultados?</h3>
-                    <p>Depende del cuerpo de cada persona, pero muchos notan cambios visibles desde la <strong>primera semana</strong> (apetito y energía). La reducción de peso suele notarse entre la <strong>2.ª y 4.ª semana</strong>.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <h3>8. ¿Qué efectos secundarios pueden presentarse?</h3>
-                    <p>Al inicio pueden aparecer (suelen disminuir con los días):</p>
-                    <ul class="effects-list">
-                        <li>Dificultad para dormir</li>
-                        <li>Aceleración leve del pulso</li>
-                        <li>Sequedad bucal</li>
-                        <li>Sudoración o nerviosismo leve</li>
-                    </ul>
-                    <p>Si son intensos, suspender y consultar al médico.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <h3>9. ¿Quiénes NO deben tomar Fentermina?</h3>
-                    <p>No debe usarse en personas con:</p>
-                    <ul class="contra-list">
-                        <li>Enfermedades cardíacas, hipertensión no controlada.</li>
-                        <li>Problemas de tiroides o glaucoma.</li>
-                        <li>Embarazo o lactancia.</li>
-                        <li>Menores de 18 años.</li>
-                        <li>Uso reciente de antidepresivos o ansiolíticos.</li>
-                    </ul>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <h3>10. ¿Puedo combinar Elvenir® y Obexol®?</h3>
-                    <p><strong>No.</strong> Ambos contienen el mismo principio activo (Fentermina 37.5 mg), solo cambia el laboratorio fabricante. Se utiliza solo uno de ellos por tratamiento.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <h3>11. ¿Necesito receta médica?</h3>
-                    <p>La Fentermina debe usarse con orientación profesional. Por eso, en nuestro Programa Completo se incluye <strong>asesoramiento y seguimiento</strong> para garantizar un uso responsable.</p>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <h3>12. ¿Qué pasa si olvido tomar una cápsula?</h3>
-                    <p>Tómala tan pronto como lo recuerdes, si aún es temprano en el día. Si ya es tarde, <strong>omite la dosis</strong> y continúa al día siguiente. <strong>No tomes dos cápsulas juntas.</strong></p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <section id="cta" class="contacto">
-    <div class="container" data-aos="zoom-in" data-aos-duration="1000">
-            <h2>¿Lista para empezar tu transformación?</h2>
-            <p>No esperes más. Escríbenos ahora por WhatsApp y coordina tu pedido. La confianza y energía que buscas están a un clic de distancia.</p>
-            <a href="https://wa.me/51900894032?text=Hola!%20Estoy%20lista%20para%20comprar%20mi%20tratamiento%20(Elvenir%2FObexol)." target="_blank" class="btn">¡HACER MI PEDIDO AHORA! <i class="fab fa-whatsapp"></i></a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <a href="#hero" class="logo-footer">Bienestar Vital</a>
-                <p>Acompañándote en tu transformación hacia un estilo de vida más saludable.</p>
-                
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61582778637083" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    
-                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                </div>
-                
-                <div class="copyright">
-                    &copy; 2025 Bienestar Vital. Todos los derechos reservados.
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/51900894032?text=Hola!%20Quiero%20iniciar%20mi%20pedido%20de%20Elvenir%2FObexol" 
-       class="whatsapp-float" 
-       target="_blank" 
-       aria-label="Contactar por WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100,
-        });
-
-        const header = document.getElementById('header');
+  <header id="site-header" class="">
+    <div class="container header-inner">
+      <div class="nav" role="navigation" aria-label="Principal">
         
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        <a href="#" class="brand">
+          <img src="logo.png" alt="Bienestar Vital" style="height: 21px; width: auto;">
+        </a>
+          <span>Bienestar Vital</span>
+        </a>
+        <nav class="nav-links" aria-label="Secciones">
+          <a href="#productos">Productos</a>
+          <a href="#cuidado">Cuidado</a>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#recomendaciones">Recomendaciones</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contacto">Contacto</a>
+          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Hola,%20quiero%20info%20sobre%20Elvenir%20u%20Obexol">Pedir por WhatsApp</a>
+        </nav>
+        <button id="menu-toggle" class="menu-toggle" aria-controls="nav-panel" aria-expanded="false" aria-label="Abrir menú">
+          Menú
+        </button>
+      </div>
+    </div>
+    <div id="nav-panel" class="nav-panel" hidden>
+      <div class="nav-sheet" role="dialog" aria-modal="true" aria-label="Menú">
+        <a href="#productos">Productos</a>
+        <a href="#cuidado">Cuidado</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#recomendaciones">Recomendaciones</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Hola,%20quiero%20info%20sobre%20Elvenir%20u%20Obexol">Pedir por WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h1>Inicia tu transformación con Elvenir, Obexol o Istaril</h1>
+          <p class="muted">Acompañamiento real, productos originales y envíos a todo Perú para recuperar tu energía y confianza.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#productos">Ver productos</a>
+            <a class="btn btn-outline" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Hola,%20quiero%20comprar">Pídelo por WhatsApp</a>
+          </div>
+        </div>
+        <div class="card">
+          <picture>
+            <source srcset="Tratamiento con Fentarmina.png 720w, Tratamiento con Fentarmina.png 1080w" sizes="(max-width: 720px) 90vw, 520px">
+            <img src="Tratamiento con Fentarmina.png" alt="Elvenir y Obexol originales" width="520" height="360" decoding="async" loading="eager" fetchpriority="high">
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <section id="productos" class="section">
+      <div class="container">
+        <h2>Elige tu apoyo</h2>
+        <p class="muted">Productos 100% originales y sellados. Elige la fórmula que mejor se adapta a tu tratamiento.</p>
+        <div class="grid grid-2">
+          <article class="card product">
+            <picture>
+              <source srcset="ELVENIR.png 320w, ELVENIR.png 480w, ELVENIR.png 720w" sizes="(max-width: 720px) 90vw, 480px">
+              <img src="ELVENIR.png" alt="Elvenir 37.5 mg" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <div class="card-body meta">
+              <span class="badge" style="background:#fce7ef;color:#9e1b3f">Original</span>
+              <div class="title">Elvenir 37.5 mg</div>
+              <div class="muted">El apoyo confiable de Fentermina 37.5 mg. Ideal para iniciar tu plan y ayudarte a controlar el apetito diario.</div>
+              <div class="pill">Caja x 30 cápsulas</div>
+              <div class="hero-cta">
+                <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20Elvenir%2037.5%20mg">Comprar por WhatsApp</a>
+              </div>
+            </div>
+          </article>
+          <article class="card product">
+            <picture>
+              <source srcset="obexol.png 320w, obexol.png 480w, obexol.png 720w" sizes="(max-width: 720px) 90vw, 480px">
+              <img src="obexol.png" alt="Obexol 37.5 mg" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <div class="card-body meta">
+              <span class="badge" style="background:#ece5ff;color:#46259c">Original</span>
+              <div class="title">Obexol 37.5 mg</div>
+              <div class="muted">La fórmula clásica de Fentermina 37.5 mg. Un aliado directo y efectivo para ayudarte a alcanzar tus objetivos.</div>
+              <div class="pill">Caja x 30 cápsulas</div>
+              <div class="hero-cta">
+                <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20Obexol%2037.5%20mg">Comprar por WhatsApp</a>
+              </div>
+            </div>
+          </article>
+          <article class="card product">
+  <picture>
+    <source srcset="92 X 30 TAB.jpeg 320w, 92 X 30 TAB.jpeg 480w, 92 X 30 TAB.jpeg 720w" sizes="(max-width: 720px) 90vw, 480px">
+    <img src="92 X 30 TAB.jpeg" alt="Istaril 15 mg/92 mg" width="480" height="320" loading="lazy" decoding="async">
+  </picture>
+  <div class="card-body meta">
+    <span class="badge" style="background:#e0f2fe;color:#0369a1">Receta Retenida</span>
+    <div class="title">Istaril 15 mg/92 mg</div>
+    <div class="muted">Acción dual (Fentermina+Topiramato). Apoyo sostenido para un control integral del apetito y los antojos.</div>
+    <div class="pill">Caja x 30 tabletas</div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20consultar%20por%20Istaril%2015%20mg/92%20mg">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</article>
+
+<article class="card product">
+  <picture>
+    <source srcset="3.75.png 320w, 3.75.png 480w, 3.75.png 720w" sizes="(max-width: 720px) 90vw, 480px">
+    <img src="3.75.png" alt="Istaril 3.75 mg/23 mg" width="480" height="320" loading="lazy" decoding="async">
+  </picture>
+  <div class="card-body meta">
+    <span class="badge" style="background:#e0f2fe;color:#0369a1">Receta Retenida</span>
+    <div class="title">Istaril 3.75 mg/23 mg</div>
+    <div class="muted">Acción dual (Fentermina+Topiramato). La dosis inicial para ayudarte a controlar apetito y ansiedad desde el comienzo.</div>
+    <div class="pill">Caja x 30 cápsulas</div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20consultar%20por%20Istaril%203.75%20mg/23%20mg">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</article>
+
+<article class="card product">
+  <picture>
+    <source srcset="46MG X 30 TAB.jpeg 320w, 46MG X 30 TAB.jpeg 480w, 46MG X 30 TAB.jpeg 720w" sizes="(max-width: 720px) 90vw, 480px">
+    <img src="46MG X 30 TAB.jpeg" alt="Istaril 7.5 mg/46 mg" width="480" height="320" loading="lazy" decoding="async">
+  </picture>
+  <div class="card-body meta">
+    <span class="badge" style="background:#e0f2fe;color:#0369a1">Receta Retenida</span>
+    <div class="title">Istaril 7.5 mg/46 mg</div>
+    <div class="muted">Acción dual (Fentermina+Topiramato). La dosis de ajuste para optimizar y continuar tu tratamiento de forma efectiva.</div>
+    <div class="pill">Caja x 30 tabletas</div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20consultar%20por%20Istaril%207.5%20mg/46%20mg">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</article>
+        </div>
+        <div class="note" style="margin-top:12px">Se utiliza solo un tipo de medicamento por tratamiento. Consulta por la fórmula ideal para ti. Istaril requiere receta retenida.</div>
+      </div>
+    </section>
+
+    <section id="cuidado" class="section">
+      <div class="container">
+        <h2>Antes de comprar</h2>
+        <div class="card">
+          <div class="card-body">
+            <p class="muted">La información es educativa. Consulta con un profesional de la salud antes de iniciar tratamiento.</p>
+            <div class="grid grid-2">
+              <div>
+                <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Indicaciones</h3>
+                <ul class="list">
+                  <li>Uso como apoyo para control del apetito dentro de un programa supervisado.</li>
+                  <li>Dosis habitual: 1 cápsula por la mañana con agua, máximo 12 semanas salvo indicación médica.</li>
+                  <li>Evitar duplicar dosis en el mismo día.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Evitar si</h3>
+                <ul class="list">
+                  <li>Embarazo o lactancia, hipertensión no controlada, cardiopatías, hipertiroidismo, glaucoma.</li>
+                  <li>Uso concomitante de IMAO u otros estimulantes; historial de abuso de sustancias.</li>
+                  <li>Ante efectos adversos intensos, suspender y consultar al médico.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="note" style="margin-top:10px">Consulta y seguimiento médico garantizan seguridad y eficacia del tratamiento.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="section">
+      <div class="container">
+        <h2>Cómo funciona</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-body">
+              <p><strong>Fentermina 37.5 mg</strong> actúa en el sistema nervioso central para ayudar a controlar el apetito como parte de un plan con dieta y actividad física.</p>
+              <ul class="list">
+                <li>Reduce ansiedad por comer y favorece adherencia nutricional.</li>
+                <li>Cambios percibidos desde la primera semana; pérdida de peso entre semanas 2 y 4 varía por persona.</li>
+                <li>Caja con 30 cápsulas para 30 días.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Efectos y recomendaciones</h3>
+              <ul class="list">
+                <li>Posibles efectos iniciales: sequedad de boca, insomnio leve, nerviosismo; suelen disminuir.</li>
+                <li>Actividad física ligera o moderada es recomendable para potenciar resultados.</li>
+                <li>Plan alimenticio personalizado disponible en el programa completo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recomendaciones" class="section">
+      <div class="container">
+        <h2>Hábitos que ayudan</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-body">
+              <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Limita</h3>
+              <ul class="list">
+                <li>Harinas y azúcares refinados, bebidas azucaradas y alcohol.</li>
+                <li>Comidas ultra procesadas y snacks altos en sodio.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Prioriza</h3>
+              <ul class="list">
+                <li>Proteínas magras, verduras, frutas y grasas saludables.</li>
+                <li>Agua suficiente y horarios de comida regulares.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:10px">Un pequeño ajuste en tu rutina puede marcar una gran diferencia.</div>
+      </div>
+    </section>
+
+<section id="compra" class="section">
+      <div class="container">
+        <h2>Compra y envíos</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-body">
+              <h3 style="margin:0 0 .4rem 0;font-size:1.1rem">Original garantizado</h3>
+              <p class="muted">Solo productos sellados de laboratorios Abbott, Saval y Tecnofarma.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h3 style="margin:0 0 .4rem 0;font-size:1.1rem">Pago contra entrega</h3>
+              <p class="muted">Yape o transferencia bancaria BCP al recibir en tu domicilio en Lima.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h3 style="margin:0 0 .4rem 0;font-size:1.1rem">Envío rápido</h3>
+              <p class="muted">Entregas el mismo día o al siguiente; provincias con proceso transparente.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-cta" style="margin-top:12px">
+          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Hola,%20quiero%20coordinar%20mi%20pedido">Coordinar por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section faq">
+      <div class="container">
+        <h2>Preguntas frecuentes</h2>
+        
+        <details>
+          <summary>¿Qué productos ofrecen?</summary>
+          <div class="muted">Ofrecemos Elvenir y Obexol (Fentermina 37.5 mg) e Istaril (combinación de Fentermina + Topiramato en varias dosis). Todos son apoyos para el control de peso bajo supervisión médica.</div>
+        </details>
+        
+        <details>
+          <summary>¿Cuándo se toman?</summary>
+          <div class="muted">Generalmente, una cápsula al día por la mañana, antes o después del desayuno con agua. Sigue siempre la indicación de tu médico.</div>
+        </details>
+        
+        <details>
+          <summary>¿Cuánto dura una caja?</summary>
+          <div class="muted">Todas las presentaciones (Elvenir, Obexol e Istaril) vienen en cajas de 30 cápsulas/tabletas, equivalentes a 30 días de tratamiento.</div>
+        </details>
+        
+        <details>
+          <summary>¿Cuál es la diferencia entre Elvenir/Obexol e Istaril?</summary>
+          <div class="muted">Elvenir y Obexol contienen solo Fentermina, un supresor del apetito. Istaril combina Fentermina con Topiramato, una fórmula de acción dual que ayuda a controlar el apetito y también la saciedad o los antojos.</div>
+        </details>
+        
+        <details>
+          <summary>¿Necesito receta médica?</summary>
+          <div class="muted">Sí. Para comprar Istaril en cualquiera de sus dosis es OBLIGATORIO presentar una receta médica retenida. Para Elvenir y Obexol, se recomienda firmemente una evaluación y seguimiento médico.</div>
+        </details>
+        
+        <details>
+          <summary>¿Y si olvido una dosis?</summary>
+          <div class="muted">Tómala cuando lo recuerdes si es temprano; si es tarde (después del mediodía), es mejor omitir la dosis y continuar al día siguiente. No dupliques dosis.</div>
+        </details>
+        
+        <details>
+          <summary>¿Puedo combinar varios productos?</summary>
+          <div class="muted">No. Se debe usar solo un tipo de medicamento a la vez y bajo indicación médica. Nunca combines Elvenir con Obexol ni con Istaril.</div>
+        </details>
+        
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <div class="container">
+        <h2>Asesoría por WhatsApp</h2>
+        <p class="muted">Resolvemos tus dudas y coordinamos tu pedido con discreción y rapidez.</p>
+        <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Hola,%20necesito%20asesor%C3%ADa">Escríbenos ahora</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="cta-float">
+    <a class="btn btn-primary" target="_blank" rel="noopener" aria-label="WhatsApp" href="https://wa.me/51900894032?text=Hola,%20vengo%20de%20la%20web%20y%20quiero%20comprar">
+      WhatsApp
+    </a>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
+        <div>© <span id="year"></span> Elvenir & Obexol • Envíos a todo Perú</div>
+        <div style="display:flex;gap:10px">
+          <a class="muted" href="#cuidado">Uso responsable</a>
+          <a class="muted" href="#faq">FAQ</a>
+          <a class="muted" target="_blank" rel="noopener" href="https://wa.me/51900894032">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    let ticking = false;
+    function onScroll(){
+      if(!ticking){
+        requestAnimationFrame(()=>{
+          header.classList.toggle('scrolled', window.scrollY > 80);
+          ticking = false;
         });
-
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-        const navLinksAnchors = navLinks.querySelectorAll('a');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            const isExpanded = navLinks.classList.contains('active');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-            
-            menuToggle.classList.toggle('active');
-        });
-
-        navLinksAnchors.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', false);
-                }
-            });
-        });
-
-    </script>
-
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    const year = document.getElementById('year');
+    if(year){ year.textContent = new Date().getFullYear(); }
+    const menuBtn = document.getElementById('menu-toggle');
+    const panel = document.getElementById('nav-panel');
+    const sheet = panel?.querySelector('.nav-sheet');
+    const focusables = ()=>sheet ? Array.from(sheet.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])')).filter(el=>!el.hasAttribute('disabled')) : [];
+    let lastFocus = null;
+    function openMenu(){
+      lastFocus = document.activeElement;
+      panel.hidden = false;
+      panel.classList.add('active');
+      menuBtn.setAttribute('aria-expanded','true');
+      document.body.style.overflow='hidden';
+      const items = focusables();
+      if(items.length) items[0].focus();
+    }
+    function closeMenu(){
+      panel.classList.remove('active');
+      menuBtn.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+      setTimeout(()=>{ panel.hidden = true; if(lastFocus) lastFocus.focus(); }, 200);
+    }
+    menuBtn.addEventListener('click', ()=>{
+      const open = panel.classList.contains('active');
+      if(open) closeMenu(); else openMenu();
+    });
+    panel.addEventListener('click', (e)=>{
+      if(e.target === panel) closeMenu();
+    });
+    panel.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeMenu();
+      if(e.key === 'Tab'){
+        const items = focusables();
+        if(!items.length) return;
+        const first = items[0], last = items[items.length - 1];
+        if(e.shiftKey && document.activeElement === first){ last.focus(); e.preventDefault(); }
+        else if(!e.shiftKey && document.activeElement === last){ first.focus(); e.preventDefault(); }
+      }
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        if(panel.classList.contains('active')) closeMenu();
+      });
+    });
+  </script>
 </body>
 </html>
-
