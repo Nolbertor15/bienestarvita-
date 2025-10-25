@@ -9,169 +9,270 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilo personalizado para la fuente Inter */
+        /* --- ESTILOS EXISTENTES --- */
         body {
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /* Estilos para las pestañas (tabs) */
         .tab-panel[data-state="inactive"] {
             display: none;
         }
-        /* Color de marca de Bienestar Vital */
         .tab-button[data-state="active"] {
-            background-color: #EE4B70; /* Color primario de tu web */
+            background-color: #EE4B70;
             color: white;
-            border-color: #EE4B70; /* Color primario de tu web */
+            border-color: #EE4B70;
         }
         .tab-button[data-state="inactive"] {
             background-color: white;
-            color: #374151; /* text-gray-700 */
-            border-color: #D1D5DB; /* border-gray-300 */
+            color: #374151;
+            border-color: #D1D5DB;
         }
-        /* Estilo para las listas dentro de las tarjetas */
-        .meal-card ul {
-            list-style: none;
-            padding-left: 0;
+        /* --- (CORRECCIÓN 4) CSS PARA EL CHECKMARK DE PROGRESO --- */
+        .tab-button.completed::after {
+            content: ' ✅';
+            font-size: 0.9em;
         }
-        .meal-card li {
+        .meal-card ul { list-style: none; padding-left: 0; }
+        .meal-card li { display: flex; align-items: start; margin-bottom: 8px; }
+        .meal-card li svg { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; margin-right: 8px; color: #10b981; }
+
+        /* --- ESTILOS MODAL (EXISTENTES Y NUEVOS) --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
             display: flex;
-            align-items: start;
-            margin-bottom: 8px;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 1;
+            transition: opacity 0.2s ease-in-out;
         }
-        .meal-card li svg {
-            flex-shrink: 0;
+        .modal-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal-box {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            transform: scale(1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .modal-overlay.hidden .modal-box {
+            transform: scale(0.95);
+        }
+        .modal-title { font-family: 'DM Sans', Inter, sans-serif; font-size: 1.5rem; font-weight: 700; color: #212529; margin-bottom: 0.5rem; }
+        .modal-text { font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #495057; margin-bottom: 1.25rem; }
+        .modal-input { width: 100%; padding: 0.75rem 1rem; border: 1px solid #D1D5DB; border-radius: 10px; font-size: 1rem; margin-bottom: 0.75rem; box-sizing: border-box; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        .modal-input:focus { outline: none; border-color: #EE4B70; box-shadow: 0 0 0 3px rgba(238, 75, 112, 0.3); }
+        .modal-button { width: 100%; padding: 0.85rem 1rem; border: none; border-radius: 10px; background-color: #EE4B70; color: white; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; }
+        .modal-button:hover { filter: brightness(0.95); }
+        .modal-button-secondary { background-color: #e5e7eb; color: #374151; } /* Botón secundario */
+        .modal-error { font-size: 0.875rem; color: #DC2626; margin-bottom: 0.75rem; font-weight: 500; }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            50% { transform: translateX(6px); }
+            75% { transform: translateX(-6px); }
+        }
+        .modal-box.shake { animation: shake 0.3s; }
+
+        /* --- NUEVOS ESTILOS: CHECKBOX DE PROGRESO --- */
+        .progress-checkbox {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .progress-checkbox:hover { background-color: #f3f4f6; }
+        .progress-checkbox input {
+            height: 1.25rem;
+            width: 1.25rem;
+            margin-right: 0.75rem;
+            accent-color: #EE4B70;
+            cursor: pointer;
+        }
+        .progress-checkbox label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #374151;
+            cursor: pointer;
+        }
+
+        /* --- NUEVOS ESTILOS: BOTÓN DE WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            filter: brightness(0.95);
+        }
+
+        /* --- NUEVOS ESTILOS: BOTÓN INFO-TIPS --- */
+        .info-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 20px;
             height: 20px;
-            margin-top: 2px;
-            margin-right: 8px;
-            color: #10b981; /* text-emerald-500 */
+            border-radius: 50%;
+            background-color: #e0e7ff;
+            color: #4338ca;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-left: 8px;
+            flex-shrink: 0;
         }
-        /* ===== ESTILOS PARA EL MODAL DE ACCESO ===== */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    opacity: 1;
-    transition: opacity 0.2s ease-in-out;
-}
+        .info-btn:hover { background-color: #c7d2fe; }
 
-/* Clase para ocultar el modal */
-.modal-overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
+        /* --- (CORRECCIÓN 2) ESTILOS PARA IMPRIMIR LA LISTA DE COMPRAS --- */
+        @media print {
+            body.printing-list {
+                padding: 0;
+                margin: 0;
+            }
+            /* Oculta todo el contenido principal al imprimir la lista */
+            body.printing-list header,
+            body.printing-list footer,
+            body.printing-list #plan-content,
+            body.printing-list .whatsapp-float {
+                display: none !important;
+            }
 
-.modal-box {
-    background: white;
-    padding: 2rem 1.5rem;
-    border-radius: 16px; /* Bordes redondeados como tu web */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    transform: scale(1);
-    transition: transform 0.2s ease-in-out;
-}
-
-.modal-overlay.hidden .modal-box {
-    transform: scale(0.95);
-}
-
-.modal-title {
-    font-family: 'DM Sans', Inter, sans-serif; /* Fuente de tu marca */
-    font-size: 1.5rem; /* 24px */
-    font-weight: 700;
-    color: #212529; /* Color de texto de tu web */
-    margin-bottom: 0.5rem; /* 8px */
-}
-
-.modal-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem; /* 15px */
-    color: #495057; /* Color de texto medio */
-    margin-bottom: 1.25rem; /* 20px */
-}
-
-.modal-input {
-    width: 100%;
-    padding: 0.75rem 1rem; /* 12px 16px */
-    border: 1px solid #D1D5DB; /* border-gray-300 */
-    border-radius: 10px;
-    font-size: 1rem;
-    margin-bottom: 0.75rem; /* 12px */
-    box-sizing: border-box; /* Importante */
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.modal-input:focus {
-    outline: none;
-    border-color: #EE4B70; /* Color primario de tu marca */
-    box-shadow: 0 0 0 3px rgba(238, 75, 112, 0.3); /* Sombra de foco */
-}
-
-.modal-button {
-    width: 100%;
-    padding: 0.85rem 1rem; /* 14px 16px */
-    border: none;
-    border-radius: 10px;
-    background-color: #EE4B70; /* Color primario de tu marca */
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem; /* 16px */
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.modal-button:hover {
-    filter: brightness(0.95);
-}
-
-.modal-error {
-    font-size: 0.875rem; /* 14px */
-    color: #DC2626; /* Un rojo de error */
-    margin-bottom: 0.75rem; /* 12px */
-    font-weight: 500;
-}
-
-/* Animación de "shake" para error */
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-6px); }
-    50% { transform: translateX(6px); }
-    75% { transform: translateX(-6px); }
-}
-
-.modal-box.shake {
-    animation: shake 0.3s;
-}
+            /* Muestra el modal de la lista y lo formatea para imprimir */
+            body.printing-list #modal-shopping-list {
+                display: block !important;
+                position: static !important;
+                inset: auto !important;
+                background: none !important;
+                backdrop-filter: none !important;
+                padding: 0 !important;
+                opacity: 1 !important;
+            }
+            body.printing-list #modal-shopping-list .modal-box {
+                box-shadow: none !important;
+                border: 1px solid #ccc;
+                max-width: 100% !important;
+                transform: none !important;
+            }
+            /* Oculta los botones de "Cerrar", "Copiar", etc. al imprimir */
+            body.printing-list #modal-shopping-list .modal-close-btn,
+            body.printing-list #modal-shopping-list #print-list-btn,
+            body.printing-list #modal-shopping-list #copy-list-btn {
+                display: none !important;
+            }
+            
+            /* --- ESTA ES LA NUEVA REGLA --- */
+            /* Permite que la lista de compras crezca y no se corte */
+            body.printing-list #modal-shopping-list #shopping-list-content {
+                max-height: none !important;
+                overflow-y: visible !important;
+            }
+        }
+        
+        /* --- NUEVOS ESTILOS: VERSIÓN IMPRESIÓN --- */
+        @media print {
+            body {
+                background-color: #fff !important;
+                font-size: 10pt;
+            }
+            #password-modal, header, footer, #tabs-container, .modal-button, .bg-red-100, .whatsapp-float, #print-button, .progress-checkbox, .info-btn {
+                display: none !important;
+            }
+            #plan-content {
+                display: block !important;
+                max-width: 100%;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .tab-panel {
+                display: block !important;
+                page-break-before: always;
+            }
+            .tab-panel:first-child {
+                page-break-before: auto;
+            }
+            .meal-card, .bg-white {
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb;
+                page-break-inside: avoid;
+            }
+            h1, h2, h3 {
+                color: #000 !important;
+                page-break-after: avoid;
+            }
+            .text-[#EE4B70] { color: #000 !important; }
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columnas en impresión */
+            }
+            .md\:grid-cols-2, .lg\:grid-cols-3 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            /* --- (CORRECCIÓN 5) SE ELIMINÓ REGLA DUPLICADA DE .md:grid-cols-3 --- */
+            .border-l-4 {
+                 border: 1px solid #e5e7eb;
+            }
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+            .meal-card li svg {
+                color: #333 !important; /* Color simple para impresión */
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
+
 <div id="password-modal" class="modal-overlay">
     <div class="modal-box">
         <img src="logo.png" alt="Bienestar Vital" style="height: 24px; width: auto; margin: 0 auto 1rem auto;">
-        
         <h2 class="modal-title">Acceso Exclusivo</h2>
         <p class="modal-text">Por favor, ingresa la contraseña que te proporcionamos con tu compra:</p>
-        
         <form id="password-form">
             <input type="password" id="password-input" class="modal-input" placeholder="Ingresa tu contraseña">
-            
             <p id="password-error" class="modal-error" style="display: none;">Contraseña incorrecta. Inténtalo de nuevo.</p>
-            
             <button type="submit" class="modal-button">Acceder</button>
         </form>
     </div>
 </div>
+
 <div id="plan-content" style="display: none;">
 
     <header class="bg-white shadow-sm">
@@ -187,11 +288,18 @@
             </a>
         </div>
     </header>
+    
     <div class="container mx-auto max-w-6xl p-4 md:p-8">
 
-        <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">
-            Tu Plan Alimenticio de 30 Días
-        </h1>
+        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-center sm:text-left text-gray-800">
+                Tu Plan Alimenticio de 30 Días
+            </h1>
+            <button id="print-button" onclick="window.print()" class="flex-shrink-0 flex items-center justify-center gap-2 text-sm font-semibold text-gray-600 hover:text-gray-900 bg-white px-4 py-2 rounded-lg border border-gray-300 shadow-sm transition-colors hover:bg-gray-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Imprimir / Guardar PDF
+            </button>
+        </div>
 
         <div class="bg-red-100 border-l-4 border-red-500 text-red-800 p-5 rounded-lg shadow-md mb-10" role="alert">
             <div class="flex items-center">
@@ -209,35 +317,39 @@
                 </div>
             </div>
         </div>
+        
         <div id="tabs-container">
-            <div class="flex flex-wrap border-b border-gray-300 mb-6 -mt-2">
-                <button class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-base">
+            <div class="flex flex-wrap border-b border-gray-300 mb-6 -mt-2" role="tablist" aria-label="Plan Alimenticio">
+                <button id="tab-base" class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-base" role="tab" aria-controls="panel-base" aria-selected="true">
                     Dieta Base
                 </button>
-                <button class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-1">
+                <button id="tab-1" class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-1" role="tab" aria-controls="panel-1" aria-selected="false" tabindex="-1">
                     Semana 1
                 </button>
-                <button class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-2">
+                <button id="tab-2" class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-2" role="tab" aria-controls="panel-2" aria-selected="false" tabindex="-1">
                     Semana 2
                 </button>
-                <button class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-3">
+                <button id="tab-3" class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-3" role="tab" aria-controls="panel-3" aria-selected="false" tabindex="-1">
                     Semana 3
                 </button>
-                <button class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-4">
+                <button id="tab-4" class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-4" role="tab" aria-controls="panel-4" aria-selected="false" tabindex="-1">
                     Semana 4
+                </button>
+                <button id="tab-faq" class="tab-button text-sm md:text-base font-semibold py-3 px-4 border-b-2 -mb-px rounded-t-lg transition-colors duration-200" data-target="panel-faq" role="tab" aria-controls="panel-faq" aria-selected="false" tabindex="-1">
+                    Preguntas Frecuentes
                 </button>
             </div>
 
             <div id="tabs-content">
 
-                <div id="panel-base" class="tab-panel" data-state="inactive">
+                <div id="panel-base" class="tab-panel" data-state="active" role="tabpanel" tabindex="0" aria-labelledby="tab-base">
                     <h2 class="text-2xl font-semibold text-gray-700 mb-6">Dieta Base Diaria</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                         <svg class="hidden" id="icon-check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
 
                         <div class="bg-white p-6 rounded-xl shadow-lg meal-card">
-                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">Al Levantarte</h3>
+                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">☀️ Al Levantarte</h3>
                             <ul>
                                 <li><svg><use href="#icon-check"/></svg><span>1 Dosis de Fentermina (según prescripción médica)</span></li>
                                 <li><svg><use href="#icon-check"/></svg><span>Entrenamiento (Ej: 30-45 min. de cardio o tu rutina asignada)</span></li>
@@ -245,7 +357,7 @@
                         </div>
 
                         <div class="bg-white p-6 rounded-xl shadow-lg meal-card">
-                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">Comida 1 (Desayuno)</h3>
+                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">🥣 Comida 1 (Desayuno)</h3>
                             <p class="text-sm text-gray-500 mb-3">(30 min. después de entrenar)</p>
                             <ul>
                                 <li><svg><use href="#icon-check"/></svg><span>Batido: 1 Cda. Aceite Sacha Inchi + 1/2 Papaya (con Stevia)</span></li>
@@ -255,10 +367,14 @@
                         </div>
 
                         <div class="bg-white p-6 rounded-xl shadow-lg meal-card">
-                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">Comida 2 (Almuerzo)</h3>
+                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">🥗 Comida 2 (Almuerzo)</h3>
                             <p class="text-sm text-gray-500 mb-3">(4h después de Comida 1)</p>
                             <ul>
-                                <li><svg><use href="#icon-check"/></svg><span>Proteína: 150g Pollo o Pescado</span></li>
+                                <li class="items-center">
+                                    <svg><use href="#icon-check"/></svg>
+                                    <span>Proteína: 150g Pollo o Pescado</span>
+                                    <button class="info-btn modal-trigger" data-modal-target="modal-ideas-proteina" aria-label="Ideas de preparación">💡</button>
+                                </li>
                                 <li><svg><use href="#icon-check"/></svg><span>Carbohidrato: 100g Arroz Integral</span></li>
                                 <li><svg><use href="#icon-check"/></svg><span>Grasa: 1/2 Palta (Aguacate)</span></li>
                                 <li><svg><use href="#icon-check"/></svg><span>Ensalada Grande (Apio, Perejil, Brócoli, Vainita, Pimentón, Cebolla, Limón, BioSal)</span></li>
@@ -267,7 +383,7 @@
                         </div>
 
                         <div class="bg-white p-6 rounded-xl shadow-lg meal-card">
-                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">Comida 3 (Media Tarde)</h3>
+                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">🥜 Comida 3 (Media Tarde)</h3>
                             <p class="text-sm text-gray-500 mb-3">(4h después de Comida 2)</p>
                             <ul>
                                 <li><svg><use href="#icon-check"/></svg><span>Tortilla: 3 Claras + 1 Yema (con Espinaca, Apio, Perejil, BioSal)</span></li>
@@ -277,7 +393,7 @@
                         </div>
 
                         <div class="bg-white p-6 rounded-xl shadow-lg meal-card">
-                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">Comida 4 (Cena)</h3>
+                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">🌙 Comida 4 (Cena)</h3>
                             <p class="text-sm text-gray-500 mb-3">(3.5h después de Comida 3)</p>
                             <ul>
                                 <li><svg><use href="#icon-check"/></svg><span>Proteína: 150g Pollo o Pescado</span></li>
@@ -289,7 +405,7 @@
                         </div>
 
                         <div class="bg-white p-6 rounded-xl shadow-lg meal-card">
-                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">Antes de Dormir</h3>
+                            <h3 class="text-xl font-bold text-[#EE4B70] mb-4">🛌 Antes de Dormir</h3>
                             <ul>
                                 <li><svg><use href="#icon-check"/></svg><span>1 Cucharada de Aceite Sacha Inchi</span></li>
                                 <li><svg><use href="#icon-check"/></svg><span>5gr de Maca</span></li>
@@ -302,9 +418,9 @@
                     <div class="mt-6 bg-gray-50 border border-gray-200 p-4 rounded-lg text-sm text-gray-600">
                         <strong>Nota sobre Suplementos:</strong> Los suplementos listados (CLA, Maca, Aceite Sacha Inchi, etc.) son sugerencias para complementar la nutrición. <strong>No son obligatorios</strong> para el plan ni para el efecto de la Fentermina. Consulta a tu médico o nutricionista antes de añadir cualquier suplemento.
                     </div>
-                    </div>
+                </div>
 
-                <div id="panel-1" class="tab-panel" data-state="inactive">
+                <div id="panel-1" class="tab-panel" data-state="inactive" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
                     <h2 class="text-2xl font-semibold text-gray-700 mb-4">Semana 1: Adaptación</h2>
                     <div class="bg-white p-6 rounded-xl shadow-lg text-gray-700 space-y-3">
                         <p class="font-semibold text-lg">Objetivo: Acostumbrar al cuerpo a la rutina.</p>
@@ -318,10 +434,19 @@
                             </li>
                             <li><strong>Frutos Secos (Comida 3):</strong> Usar Almendras.</li>
                         </ul>
+                        
+                        <button class="modal-trigger modal-button w-full sm:w-auto" data-modal-target="modal-shopping-list" data-week-target="semana1">
+                            Generar Lista de Compras (Semana 1)
+                        </button>
+
+                        <div class="progress-checkbox">
+                            <input type="checkbox" id="progress-s1" class="progress-input" data-panel-id="panel-1">
+                            <label for="progress-s1">Marcar Semana 1 como Completada</label>
+                        </div>
                     </div>
                 </div>
 
-                <div id="panel-2" class="tab-panel" data-state="inactive">
+                <div id="panel-2" class="tab-panel" data-state="inactive" role="tabpanel" tabindex="0" aria-labelledby="tab-2">
                     <h2 class="text-2xl font-semibold text-gray-700 mb-4">Semana 2: Variación de Nutrientes</h2>
                     <div class="bg-white p-6 rounded-xl shadow-lg text-gray-700 space-y-3">
                         <p class="font-semibold text-lg">Objetivo: Introducir diferentes fuentes de carbohidratos y proteínas.</p>
@@ -340,10 +465,19 @@
                             </li>
                             <li><strong>Frutos Secos (Comida 3):</strong> Usar Pecanas.</li>
                         </ul>
+                        
+                        <button class="modal-trigger modal-button w-full sm:w-auto" data-modal-target="modal-shopping-list" data-week-target="semana2">
+                            Generar Lista de Compras (Semana 2)
+                        </button>
+
+                        <div class="progress-checkbox">
+                            <input type="checkbox" id="progress-s2" class="progress-input" data-panel-id="panel-2">
+                            <label for="progress-s2">Marcar Semana 2 como Completada</label>
+                        </div>
                     </div>
                 </div>
 
-                <div id="panel-3" class="tab-panel" data-state="inactive">
+                <div id="panel-3" class="tab-panel" data-state="inactive" role="tabpanel" tabindex="0" aria-labelledby="tab-3">
                     <h2 class="text-2xl font-semibold text-gray-700 mb-4">Semana 3: Variación de Preparaciones</h2>
                     <div class="bg-white p-6 rounded-xl shadow-lg text-gray-700 space-y-3">
                         <p class="font-semibold text-lg">Objetivo: Cambiar texturas y sabores.</p>
@@ -372,10 +506,19 @@
                             </li>
                              <li><strong>Frutos Secos (Comida 3):</strong> Usar Nueces.</li>
                         </ul>
+                        
+                        <button class="modal-trigger modal-button w-full sm:w-auto" data-modal-target="modal-shopping-list" data-week-target="semana3">
+                            Generar Lista de Compras (Semana 3)
+                        </button>
+
+                        <div class="progress-checkbox">
+                            <input type="checkbox" id="progress-s3" class="progress-input" data-panel-id="panel-3">
+                            <label for="progress-s3">Marcar Semana 3 como Completada</label>
+                        </div>
                     </div>
                 </div>
 
-                <div id="panel-4" class="tab-panel" data-state="inactive">
+                <div id="panel-4" class="tab-panel" data-state="inactive" role="tabpanel" tabindex="0" aria-labelledby="tab-4">
                     <h2 class="text-2xl font-semibold text-gray-700 mb-4">Semana 4: Consolidación</h2>
                     <div class="bg-white p-6 rounded-xl shadow-lg text-gray-700 space-y-3">
                         <p class="font-semibold text-lg">Objetivo: Volver a la base y ajustar.</p>
@@ -390,15 +533,100 @@
                                 </ul>
                             </li>
                         </ul>
+                        
+                        <button class="modal-trigger modal-button w-full sm:w-auto" data-modal-target="modal-shopping-list" data-week-target="semana4">
+                            Generar Lista de Compras (Semana 4)
+                        </button>
+
+                        <div class="progress-checkbox">
+                            <input type="checkbox" id="progress-s4" class="progress-input" data-panel-id="panel-4">
+                            <label for="progress-s4">Marcar Semana 4 como Completada</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="panel-faq" class="tab-panel" data-state="inactive" role="tabpanel" tabindex="0" aria-labelledby="tab-faq">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-6">Preguntas Frecuentes</h2>
+                    <div class="space-y-6">
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">¿Qué hago si me salto una comida?</h3>
+                            <p class="text-gray-600">No te preocupes, ¡sucede! Simplemente continúa con tu siguiente comida programada. No intentes duplicar la porción o "recuperar" la comida perdida. Mantén la constancia con el resto del día.</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">¿Puedo tomar café?</h3>
+                            <p class="text-gray-600">Con mucha precaución. La Fentermina (Elvenir/Obexol) es un estimulante potente. El café (cafeína) puede potenciar efectos secundarios como ansiedad, taquicardia o insomnio. Consulta primero a tu médico. Si te da permiso, tómalo solo, sin azúcar, sin leche y observa cómo te sientes.</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">Me siento ansioso/a o tengo insomnio, ¿es normal?</h3>
+                            <p class="text-gray-600">Son efectos secundarios conocidos de la Fentermina. Sin embargo, no debes ignorarlos. Comunícate con tu médico **inmediatamente** para discutir estos síntomas. Es posible que necesite ajustar tu dosis o el horario en que tomas el medicamento.</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">¿Por qué no puedo comer lechuga?</h3>
+                            <p class="text-gray-600">Aunque la lechuga es saludable, para este plan específico de 30 días, priorizamos vegetales fibrosos que son menos propensos a causar inflamación o gases en algunas personas (como el apio, brócoli, espinaca). Buscamos maximizar el confort digestivo durante el tratamiento.</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">¿Qué hago si no encuentro Aceite Sacha Inchi?</h3>
+                            <p class="text-gray-600">El Sacha Inchi es ideal por su alto contenido de Omega-3. Si no lo encuentras, un buen sustituto es el **Aceite de Linaza (Lino)** (1 cucharada). Como alternativa, puedes usar **Aceite de Oliva Extra Virgen** (aunque el perfil de omegas es diferente) o añadir 1/4 de palta (aguacate) adicional a una de tus comidas.</p>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
         </div>
 
+        <h2 class="text-2xl font-semibold text-gray-700 mt-12 mb-6">Pautas de Alimentación Adicionales</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
+                <h3 class="text-xl font-bold text-red-600 mb-4">Evitar Durante el Plan</h3>
+                <p class="text-sm text-gray-500 mb-4">Estos alimentos pueden interferir con tus objetivos, causar inflamación o son altos en azúcares.</p>
+                
+                <h4 class="font-semibold text-gray-800 mb-2">❌ Frutas (Alto índice glucémico)</h4>
+                <p class="text-sm text-gray-600 mb-3">Evita frutas con alto contenido de azúcar. Cíñete a las permitidas.</p>
+                <ul class="mb-4 list-disc list-inside text-gray-700 text-sm space-y-1">
+                    <li>Chirimoya</li> <li>Plátano (seda o cualquier tipo)</li> <li>Uva</li> <li>Mango</li> <li>Mandarina</li> <li>Durazno</li>
+                </ul>
+
+                <h4 class="font-semibold text-gray-800 mb-2">❌ Vegetales (Inflamatorios/Almidonados)</h4>
+                <p class="text-sm text-gray-600 mb-3">Aunque son sanos, para este plan específico evitaremos los que pueden causar inflamación o son más altos en carbohidratos.</p>
+                <ul class="mb-4 list-disc list-inside text-gray-700 text-sm space-y-1">
+                    <li>Lechuga (todas las variedades)</li> <li>Repollo / Col</li> <li>Beterraga</li> <li>Rabanito</li>
+                </ul>
+
+                <h4 class="font-semibold text-gray-800 mb-2">❌ Lácteos (Cero)</h4>
+                <p class="text-gray-600 text-sm">Elimina: <strong>Leche, Yogurt, Quesos</strong> (excepto la opción de Cottage bajo en grasa en Semana 3), <strong>Mantequilla</strong> y cualquier derivado lácteo.</p>
+                
+                <h4 class="font-semibold text-gray-800 mt-4 mb-2">❌ Otros</h4>
+                <p class="text-gray-600 text-sm">Evita por completo: <strong>Alcohol, azúcares añadidos, harinas refinadas, frituras</strong> y <strong>comida procesada</strong>.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-emerald-500">
+                <h3 class="text-xl font-bold text-emerald-600 mb-4">Priorizar en tu Dieta</h3>
+                <p class="text-sm text-gray-500 mb-4">Estos son los alimentos base de tu plan. Concéntrate en ellos.</p>
+                
+                <h4 class="font-semibold text-gray-800 mb-2">✅ Frutas (Bajo índice glucémico)</h4>
+                <p class="text-sm text-gray-600 mb-3">Estas son las únicas frutas permitidas en el plan:</p>
+                <ul class="mb-4 list-disc list-inside text-gray-700 text-sm space-y-1">
+                    <li><strong>Papaya</strong> (como en tu desayuno)</li>
+                    <li><strong>Melón</strong> (ocasionalmente, si deseas variar)</li>
+                    <li><strong>Limón</strong> (permitido, como en tu limonada)</li>
+                </ul>
+
+                <h4 class="font-semibold text-gray-800 mb-2">✅ Vegetales Fibrosos</h4>
+                <p class="text-gray-600 text-sm mb-3">Estos son la base de tus ensaladas y preparaciones. Están permitidos y recomendados:</p>
+                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                    <li>Apio</li> <li>Perejil</li> <li>Espinaca</li> <li>Brócoli</li> <li>Vainita</li> <li>Pimentón</li> <li>Cebolla</li> <li>Pepinillo</li> <li>Zanahoria</li> <li>Tomate</li>
+                </ul>
+            </div>
+        </div>
+        
         <h2 class="text-2xl font-semibold text-gray-700 mt-12 mb-6">Recomendaciones Clave</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
             <div class="bg-white p-6 rounded-xl shadow-lg flex items-start">
                 <svg class="w-12 h-12 text-[#6F42C1] mr-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path><path d="M12 12 a3 3 0 0 0 3 -3.46c-1.07-1.4-2.22-2.8-3-4.14-0.78 1.34-1.93 2.74-3 4.14A3 3 0 0 0 12 12z"></path></svg>
                 <div>
@@ -406,7 +634,6 @@
                     <p class="text-gray-600">Bebe <strong>2-3 litros de agua pura</strong> al día. La fentermina puede causar sequedad de boca y el ejercicio requiere una hidratación constante.</p>
                 </div>
             </div>
-
             <div class="bg-white p-6 rounded-xl shadow-lg flex items-start">
                 <svg class="w-12 h-12 text-[#20C997] mr-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5C9.24 5 7 7.24 7 10s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"></path><path d="M19 5h-2"></path><path d="M5 5H3"></path><path d="M19 12h2"></path><path d="M3 12H1"></path><path d="M12 19v2"></path><path d="M12 3V1"></path><path d="m4.93 19.07 1.41-1.41"></path><path d="m17.66 6.34-1.41 1.41"></path><path d="m19.07 19.07-1.41-1.41"></path><path d="m6.34 6.34 1.41 1.41"></path></svg>
                 <div>
@@ -414,7 +641,6 @@
                     <p class="text-gray-600">Esta dieta está diseñada para complementar un <strong>régimen de entrenamiento</strong>. No dejes de entrenar, ya que la Comida 1 depende de ello.</p>
                 </div>
             </div>
-
             <div class="bg-white p-6 rounded-xl shadow-lg flex items-start">
                 <svg class="w-12 h-12 text-[#EE4B70] mr-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
                 <div>
@@ -422,10 +648,11 @@
                     <p class="text-gray-600">La fentermina es un estimulante. Si sientes <strong>ansiedad, taquicardia o insomnio</strong>, comunícaselo a tu médico inmediatamente.</p>
                 </div>
             </div>
-
         </div>
 
-    </div> <footer class="mt-12 py-8 border-t border-gray-200">
+    </div> 
+    
+    <footer class="mt-12 py-8 border-t border-gray-200">
         <div class="container mx-auto max-w-6xl px-4 text-center text-gray-500">
             <p>&copy; <span id="footer-year"></span> Bienestar Vital. Todos los derechos reservados.</p>
             <p class="text-sm mt-2">
@@ -438,109 +665,277 @@
             </p>
         </div>
     </footer>
-    <script>
-        // Script simple para el año del footer
-        document.getElementById('footer-year').textContent = new Date().getFullYear();
-    </script>
-    </div> <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabsContainer = document.getElementById('tabs-container');
-            const tabsContent = document.getElementById('tabs-content');
+    
+    <a href="https://wa.me/51900894032?text=Hola%20Bienestar%20Vital,%20tengo%20una%20duda%20sobre%20mi%20plan%20alimenticio..." 
+       target="_blank" 
+       class="whatsapp-float"
+       aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+    </a>
+
+</div> <div id="modal-shopping-list" class="modal-overlay hidden">
+        <div class="modal-box" style="max-width: 500px; text-align: left;">
+            <h2 id="shopping-list-title" class="modal-title">Lista de Compras</h2>
+            <p class="modal-text">Lista sugerida para tu semana. Las cantidades son semanales (aprox.)</p>
             
-            if (tabsContainer && tabsContent) {
-                const tabButtons = tabsContainer.querySelectorAll('.tab-button');
-                const tabPanels = tabsContent.querySelectorAll('.tab-panel');
+            <div id="shopping-list-content" class="text-sm text-gray-700 space-y-2 max-h-80 overflow-y-auto pr-2">
+                </div>
+            
+            <div class="mt-6 flex flex-col sm:flex-row-reverse gap-3">
+                <button class="modal-close-btn modal-button modal-button-secondary w-full sm:w-auto">Cerrar</button>
+                <button id="print-list-btn" class="modal-button w-full sm:w-auto" style="background-color: #3b82f6;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block -mt-1 mr-1"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                    Imprimir Lista
+                </button>
+                <button id="copy-list-btn" class="modal-button w-full sm:w-auto" style="background-color: #10b981;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block -mt-1 mr-1"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    Copiar Lista
+                </button>
+            </div>
+        </div>
+    </div>
 
-                // Función para cambiar de pestaña
-                function switchTab(targetId) {
-                    // Actualizar botones
-                    tabButtons.forEach(button => {
-                        if (button.dataset.target === targetId) {
-                            button.dataset.state = 'active';
-                        } else {
-                            button.dataset.state = 'inactive';
-                        }
-                    });
-
-                    // Actualizar paneles
-                    tabPanels.forEach(panel => {
-                        if (panel.id === targetId) {
-                            panel.dataset.state = 'active';
-                        } else {
-                            panel.dataset.state = 'inactive';
-                        }
-                    });
-                }
-
-                // Añadir listeners a los botones
-                tabButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        switchTab(button.dataset.target);
-                    });
-                });
-
-                // Activar la primera pestaña por defecto
-                switchTab('panel-base');
-            }
-        });
-    </script>
-
+    <div id="modal-ideas-proteina" class="modal-overlay hidden">
+        <div class="modal-box" style="max-width: 450px; text-align: left;">
+            <h2 class="modal-title">💡 Ideas de Preparación</h2>
+            <p class="modal-text">Formas sencillas de preparar tus 150g de Pollo o Pescado:</p>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
+                <li><strong>Pollo a la Plancha:</strong> Sazona con limón, orégano, BioSal y pimienta. Cocina en una sartén antiadherente bien caliente.</li>
+                <li><strong>Pollo Salteado:</strong> Corta en cubos y saltea con tus vegetales permitidos (pimentón, cebolla, brócoli).</li>
+                <li><strong>Pescado al Vapor:</strong> Coloca el filete (merluza, tilapia) sobre una cama de perejil y apio y cocina al vapor por 8-10 min.</li>
+                <li><strong>Pescado al Horno:</strong> Envuelve el filete en papel aluminio con rodajas de tomate, pimentón y una pizca de sal. Hornea a 180°C por 15 min.</li>
+            </ul>
+            <button class="modal-close-btn modal-button modal-button-secondary w-full mt-6">Entendido</button>
+        </div>
+    </div>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // ###################################################
-        // !! IMPORTANTE: CAMBIA ESTA CONTRASEÑA POR LA TUYA !!
-        const CLAVE_ACCESO = "vital2024";
-        // ###################################################
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // ###################################################
+    // !! IMPORTANTE: CAMBIA ESTA CONTRASEÑA POR LA TUYA !!
+    const CLAVE_ACCESO = "vital2024";
+    // ###################################################
 
-        const modal = document.getElementById('password-modal');
-        const modalBox = document.querySelector('.modal-box');
-        const form = document.getElementById('password-form');
-        const input = document.getElementById('password-input');
-        const errorMsg = document.getElementById('password-error');
+    // --- 1. SCRIPT MODAL DE CONTRASEÑA ---
+    const passModal = document.getElementById('password-modal');
+    if (passModal) { // Comprobar si el modal existe antes de usarlo
+        const passModalBox = passModal.querySelector('.modal-box');
+        const passForm = document.getElementById('password-form');
+        const passInput = document.getElementById('password-input');
+        const passErrorMsg = document.getElementById('password-error');
         const mainContent = document.getElementById('plan-content');
 
-        // Enfocar el campo de contraseña automáticamente
-        // Usamos un pequeño retraso para asegurar que la transición de carga no lo interrumpa
-        setTimeout(() => {
-            input.focus();
-        }, 100);
+        setTimeout(() => { passInput.focus(); }, 100);
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Evita que la página se recargue
-            
-            const pass = input.value;
+        passForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pass = passInput.value;
 
             if (pass === CLAVE_ACCESO) {
-                // Contraseña correcta
-                // 1. Ocultar el modal con una transición
-                modal.classList.add('hidden');
-                
-                // 2. Mostrar el contenido principal
+                passModal.classList.add('hidden');
                 mainContent.style.display = 'block';
-
-                // 3. Quitar el modal del DOM después de la transición
-                //    para que no interfiera con el scroll o clics.
-                setTimeout(() => {
-                    modal.remove();
-                }, 300); // 300ms debe coincidir con la transición de CSS
-
+                setTimeout(() => { passModal.remove(); }, 300);
             } else {
-                // Contraseña incorrecta
-                // 1. Mostrar el mensaje de error
-                errorMsg.style.display = 'block';
-                
-                // 2. Sacudir el modal para feedback visual
-                modalBox.classList.add('shake');
-                setTimeout(() => {
-                    modalBox.classList.remove('shake');
-                }, 300);
-                
-                // 3. Limpiar el campo
-                input.value = '';
-                input.focus();
+                passErrorMsg.style.display = 'block';
+                passModalBox.classList.add('shake');
+                setTimeout(() => { passModalBox.classList.remove('shake'); }, 300);
+                passInput.value = '';
+                passInput.focus();
+            }
+        });
+    }
+
+    // --- 2. SCRIPT DE PESTAÑAS (TABS) ---
+    const tabsContainer = document.getElementById('tabs-container');
+    if (tabsContainer) {
+        const tabButtons = tabsContainer.querySelectorAll('.tab-button');
+        const tabPanels = document.getElementById('tabs-content').querySelectorAll('.tab-panel');
+
+        function switchTab(targetId) {
+            tabButtons.forEach(button => {
+                const isTarget = button.dataset.target === targetId;
+                button.dataset.state = isTarget ? 'active' : 'inactive';
+                button.setAttribute('aria-selected', isTarget);
+                button.setAttribute('tabindex', isTarget ? '0' : '-1');
+            });
+
+            tabPanels.forEach(panel => {
+                const isTarget = panel.id === targetId;
+                panel.dataset.state = isTarget ? 'active' : 'inactive';
+            });
+        }
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                switchTab(button.dataset.target);
+            });
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    switchTab(button.dataset.target);
+                }
+            });
+        });
+        switchTab('panel-base');
+    }
+
+    // --- 3. SCRIPT DE PROGRESO (localStorage) (CORREGIDO Y OPTIMIZADO) ---
+    const progressCheckboxes = document.querySelectorAll('.progress-input');
+    const panelIds = ['panel-1', 'panel-2', 'panel-3', 'panel-4'];
+
+    panelIds.forEach(panelId => {
+        const isCompleted = localStorage.getItem(`progress-${panelId}`) === 'true';
+        const checkbox = document.querySelector(`.progress-input[data-panel-id="${panelId}"]`);
+        const tabButton = document.getElementById(panelId.replace('panel', 'tab'));
+        
+        if (isCompleted && checkbox && tabButton) {
+            checkbox.checked = true;
+            // --- CAMBIO: Se usa classList en lugar de innerHTML ---
+            tabButton.classList.add('completed');
+        }
+    });
+
+    progressCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const panelId = checkbox.dataset.panelId;
+            const tabButton = document.getElementById(panelId.replace('panel', 'tab'));
+            
+            if (tabButton) {
+                if (checkbox.checked) {
+                    localStorage.setItem(`progress-${panelId}`, 'true');
+                    // --- CAMBIO: Se usa classList en lugar de innerHTML ---
+                    tabButton.classList.add('completed');
+                } else {
+                    localStorage.setItem(`progress-${panelId}`, 'false');
+                    // --- CAMBIO: Se usa classList en lugar de innerHTML ---
+                    tabButton.classList.remove('completed');
+                }
             }
         });
     });
+
+    // --- 4. SCRIPT MODALES GENÉRICOS (Lista de Compras, Tips) ---
+    const modalTriggers = document.querySelectorAll('.modal-trigger');
+    const modalCloseBtns = document.querySelectorAll('.modal-close-btn');
+
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const targetModalId = trigger.dataset.modalTarget;
+            const modal = document.getElementById(targetModalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                if (targetModalId === 'modal-shopping-list') {
+                    const weekKey = trigger.dataset.weekTarget;
+                    generateShoppingList(weekKey);
+                }
+            }
+        });
+    });
+
+    modalCloseBtns.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal-overlay');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+
+    // --- 5. SCRIPT LISTA DE COMPRAS (ACTUALIZADO) ---
+    // Variable global para guardar la lista de texto plano
+    let plainTextShoppingList = ""; 
+        
+    const shoppingListData = {
+        base: [
+            "Huevos (Claras y Yemas)", "Pollo (pechuga)", "Pescado (blanco, ej: merluza, tilapia)",
+            "Arroz Integral", "Avena (en hojuelas)", "Papaya", "Limones", "Palta (Aguacate)",
+            "Aceite Sacha Inchi (o linaza)", "Aceite de Oliva Extra Virgen",
+            "Verduras (Espinaca, Apio, Perejil, Brócoli, Vainita, Pimentón, Cebolla, Tomate, Pepinillo, Zanahoria)",
+            "BioSal (o sal baja en sodio)", "Stevia", "Té (Jazmín o Valeriana)", "Agua (2-3L diarios)"
+        ],
+        semana1: ["Almendras (105g)"],
+        semana2: ["Pavo (pechuga)", "Camote (Batata)", "Papa (blanca)", "Pecanas (105g)"],
+        semana3: ["Res Magra (ej: lomo fino)", "Quinoa", "Yuca", "Queso Cottage (bajo en grasa)", "Atún en lata (en agua)", "Nueces (105g)"],
+        semana4: ["Libre: Almendras, Pecanas o Nueces (105g total)", "Libre: Pavo (opcional)", "Libre: Camote, Papa, Quinoa (opcional)"]
+    };
+
+    function generateShoppingList(weekKey) {
+        const listContent = document.getElementById('shopping-list-content');
+        const listTitle = document.getElementById('shopping-list-title');
+        
+        if (!listContent || !shoppingListData[weekKey]) return;
+
+        const baseList = shoppingListData.base;
+        const weekList = shoppingListData[weekKey];
+        const fullList = [...new Set([...baseList, ...weekList])];
+
+        listContent.innerHTML = fullList.map(item => `
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                ${item}
+            </li>
+        `).join('');
+
+        const weekNum = weekKey.replace('semana', 'Semana ');
+        const titleText = `Lista de Compras (${weekNum})`;
+        listTitle.innerText = titleText;
+
+        // NUEVO: Generar y guardar lista de texto plano para copiar
+        plainTextShoppingList = `${titleText}\n\n` + fullList.map(item => `• ${item}`).join('\n');
+    }
+
+    // --- 6. SCRIPT NUEVO: Botones de Modal de Lista ---
+    const copyBtn = document.getElementById('copy-list-btn');
+    const printBtn = document.getElementById('print-list-btn');
+
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(plainTextShoppingList).then(() => {
+                copyBtn.innerHTML = '¡Copiado!';
+                copyBtn.style.backgroundColor = '#059669'; // Verde más oscuro
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block -mt-1 mr-1"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copiar Lista';
+                    copyBtn.style.backgroundColor = '#10b981';
+                }, 2000);
+            }).catch(err => {
+                copyBtn.innerText = 'Error al copiar';
+                copyBtn.style.backgroundColor = '#DC2626'; // Rojo
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block -mt-1 mr-1"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copiar Lista';
+                    copyBtn.style.backgroundColor = '#10b981';
+                }, 2000);
+            });
+        });
+    }
+
+    if (printBtn) {
+        printBtn.addEventListener('click', () => {
+            // 1. Añadir clase al body para activar CSS de impresión
+            document.body.classList.add('printing-list');
+            // 2. Llamar a la impresión
+            window.print();
+            // 3. Quitar la clase después de que se abra el diálogo
+            setTimeout(() => {
+                document.body.classList.remove('printing-list');
+            }, 500);
+        });
+    }
+    
+    // --- 7. SCRIPT AÑO DEL FOOTER ---
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+    
+});
 </script>
-    </body>
+
+</body>
 </html>
