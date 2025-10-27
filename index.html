@@ -4,14 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Elvenir, Obexol O Istaril | Fentermina 37.5 mg | Envíos a todo Perú</title>
+  
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="icon" href="favicon.ico">
   <link rel="manifest" href="site.webmanifest">
-  <meta name="description" content="Elvenir y Obexol originales con Fentermina 37.5 mg. Asesoría por WhatsApp, pago contra entrega y envíos a todo el Perú. Consulta médica recomendada.">
+  
+  <meta name="description" content="Elvenir, Obexol e Istaril originales. Fentermina 37.5 mg y acción dual. Asesoría por WhatsApp y envíos a todo el Perú.">
   <meta name="theme-color" content="#EE4B70">
-  <link rel="canonical" href="https://tudominio.pe/">
+  
+  <link rel="canonical" href="https://bienestarvital.netlify.app/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -45,7 +49,9 @@
       line-height:1.6;
       text-rendering:optimizeLegibility;
     }
-    img{max-width:100%;height:auto;display:block;border-radius:12px}
+    img, picture, svg {max-width:100%;height:auto;display:block;}
+    img { border-radius:12px; }
+    
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
     .btn{
@@ -59,10 +65,16 @@
     .btn-primary{background:var(--color-primario);color:#fff}
     .btn-primary:hover{filter:brightness(.96)}
     .btn-outline{background:#fff;border-color:var(--color-borde);color:var(--color-texto)}
-    .btn-outline:hover{border-color:#cfd4da}
+    .btn-outline:hover{border-color:#cfd4da; background: #f8f9fa;}
     .badge{
       display:inline-block;padding:.25rem .6rem;border-radius:999px;font-size:.8rem;font-weight:600
     }
+    
+    /* MEJORA: Clases para Badges (reemplaza estilos inline) */
+    .badge-elvenir { background:#fce7ef; color:#9e1b3f; }
+    .badge-obexol { background:#ece5ff; color:#46259c; }
+    .badge-istaril { background:#e0f2fe; color:#0369a1; }
+    
     header{
       position:sticky;top:0;z-index:1000;background:#fff;
       box-shadow:0 0 0 rgba(0,0,0,0);
@@ -79,6 +91,12 @@
     }
     .brand{
       display:flex;align-items:center;gap:.6rem;font-family:"DM Sans",Inter,sans-serif;font-weight:700;letter-spacing:-.4px
+    }
+    /* MEJORA: Estilo del logo movido de inline a CSS */
+    .brand img {
+      height: 21px;
+      width: auto;
+      border-radius: 0; /* Anula el border-radius general de img si es necesario */
     }
     .brand .logo{
       width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--color-primario),var(--color-secundario));
@@ -104,9 +122,13 @@
     .hero p{color:var(--color-texto-medio);margin:0 0 1rem 0}
     .hero-cta{display:flex;gap:.6rem;flex-wrap:wrap}
     .card{
-      background:#fff;border:1px solid var(--color-borde);border-radius:var(--radius);box-shadow:var(--shadow-md)
+      background:#fff;border:1px solid var(--color-borde);border-radius:var(--radius);box-shadow:var(--shadow-md);
+      display: flex; flex-direction: column; /* Asegura altura consistente */
     }
-    .card-body{padding:20px}
+    .card-body{
+      padding:20px;
+      flex-grow: 1; /* Asegura altura consistente */
+    }
     .grid{
       display:grid;gap:18px
     }
@@ -117,6 +139,13 @@
     .section h2{
       font-family:"DM Sans",Inter,sans-serif;font-size:var(--step-2);line-height:1.15;letter-spacing:-.4px;margin:0 0 10px 0
     }
+    
+    /* MEJORA: Clase para H3 (reemplaza estilos inline) */
+    .h3-section {
+      margin:0 0 .4rem 0;
+      font-size:var(--step-1);
+    }
+    
     .muted{color:var(--color-texto-medio)}
     .list{margin:0;padding-left:1.1rem}
     .list li{margin:.35rem 0}
@@ -129,6 +158,11 @@
     .note{
       background:#fff;border:1px dashed var(--color-borde);border-radius:14px;padding:14px;color:var(--color-texto-medio)
     }
+    /* MEJORA: Clase para margen (reemplaza estilos inline) */
+    .note.top-margin {
+      margin-top: 12px;
+    }
+
     .faq details{border:1px solid var(--color-borde);border-radius:12px;background:#fff;padding:12px}
     .faq details+details{margin-top:10px}
     .faq summary{cursor:pointer;font-weight:600;list-style:none}
@@ -139,6 +173,7 @@
     }
     .cta-float .btn{box-shadow:var(--shadow-lg)}
     footer{padding:28px 0;color:var(--color-texto-medio)}
+    
     @media (max-width:1024px){
       .hero-inner{grid-template-columns:1fr}
       .product{grid-template-columns:1fr}
@@ -161,22 +196,14 @@
       .nav-sheet a:hover{background:#f1f3f5}
       .hero{padding:28px 0 18px 0}
       .hero-cta .btn{width:100%}
-
-      /* --- INICIO DE LA CORRECCIÓN --- */
       .grid-2,
       .grid-3,
       .grid-4 {
-        /* Hacemos que todas las grids pasen a 1 columna en móvil */
         grid-template-columns: 1fr;
       }
       .hero-inner {
-        /* La imagen del hero ya se apila por la regla de 1024px */
-        /* Solo reducimos el espacio en móvil */
         gap: 18px;
       }
-      /* La clase .product (imagen + texto) ya se apila por */
-      /* la regla de 1024px, así que no es necesario repetirla */
-      /* --- FIN DE LA CORRECCIÓN --- */
     }
     @media (prefers-reduced-motion:reduce){
       *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
@@ -196,16 +223,14 @@
     <div class="container header-inner">
       <div class="nav" role="navigation" aria-label="Principal">
         
-        <a href="#" class="brand">
-          <img src="logo.png" alt="Bienestar Vital" style="height: 21px; width: auto;">
-        </a>
+        <a href="https://bienestarvital.netlify.app/" class="brand">
+          <img src="logo.png" alt="">
           <span>Bienestar Vital</span>
         </a>
         <nav class="nav-links" aria-label="Secciones">
           <a href="#productos">Productos</a>
-          <a href="#cuidado">Cuidado</a>
+          <a href="info/">Guía Completa</a>
           <a href="#como-funciona">Cómo funciona</a>
-          <a href="#recomendaciones">Recomendaciones</a>
           <a href="#faq">FAQ</a>
           <a href="#contacto">Contacto</a>
           <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Hola,%20quiero%20info%20sobre%20Elvenir%20u%20Obexol">Pedir por WhatsApp</a>
@@ -218,7 +243,7 @@
     <div id="nav-panel" class="nav-panel" hidden>
       <div class="nav-sheet" role="dialog" aria-modal="true" aria-label="Menú">
         <a href="#productos">Productos</a>
-        <a href="#cuidado">Cuidado</a>
+        <a href="info/">Guía Completa</a>
         <a href="#como-funciona">Cómo funciona</a>
         <a href="#recomendaciones">Recomendaciones</a>
         <a href="#faq">FAQ</a>
@@ -236,13 +261,13 @@
           <p class="muted">Acompañamiento real, productos originales y envíos a todo Perú para recuperar tu energía y confianza.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#productos">Ver productos</a>
-            <a class="btn btn-outline" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Hola,%20quiero%20comprar">Pídelo por WhatsApp</a>
+            <a class="btn btn-outline" href="info/">Leer la guía</a>
           </div>
         </div>
         <div class="card">
           <picture>
             <source srcset="Tratamiento con Fentarmina.png 720w, Tratamiento con Fentarmina.png 1080w" sizes="(max-width: 720px) 90vw, 520px">
-            <img src="Tratamiento con Fentarmina.png" alt="Elvenir y Obexol originales" width="520" height="360" decoding="async" loading="eager" fetchpriority="high">
+            <img src="Tratamiento con Fentarmina.png" alt="Cajas de Elvenir y Obexol sobre una mesa" width="520" height="360" decoding="async" loading="eager" fetchpriority="high">
           </picture>
         </div>
       </div>
@@ -256,10 +281,10 @@
           <article class="card product">
             <picture>
               <source srcset="ELVENIR.png 320w, ELVENIR.png 480w, ELVENIR.png 720w" sizes="(max-width: 720px) 90vw, 480px">
-              <img src="ELVENIR.png" alt="Elvenir 37.5 mg" width="480" height="320" loading="lazy" decoding="async">
+              <img src="ELVENIR.png" alt="Caja de Elvenir 37.5 mg" width="480" height="320" loading="lazy" decoding="async">
             </picture>
             <div class="card-body meta">
-              <span class="badge" style="background:#fce7ef;color:#9e1b3f">Original</span>
+              <span class="badge badge-elvenir">Original</span>
               <div class="title">Elvenir 37.5 mg</div>
               <div class="muted">El apoyo confiable de Fentermina 37.5 mg. Ideal para iniciar tu plan y ayudarte a controlar el apetito diario.</div>
               <div class="pill">Caja x 30 cápsulas</div>
@@ -271,10 +296,10 @@
           <article class="card product">
             <picture>
               <source srcset="obexol.png 320w, obexol.png 480w, obexol.png 720w" sizes="(max-width: 720px) 90vw, 480px">
-              <img src="obexol.png" alt="Obexol 37.5 mg" width="480" height="320" loading="lazy" decoding="async">
+              <img src="obexol.png" alt="Caja de Obexol 37.5 mg" width="480" height="320" loading="lazy" decoding="async">
             </picture>
             <div class="card-body meta">
-              <span class="badge" style="background:#ece5ff;color:#46259c">Original</span>
+              <span class="badge badge-obexol">Original</span>
               <div class="title">Obexol 37.5 mg</div>
               <div class="muted">La fórmula clásica de Fentermina 37.5 mg. Un aliado directo y efectivo para ayudarte a alcanzar tus objetivos.</div>
               <div class="pill">Caja x 30 cápsulas</div>
@@ -284,38 +309,37 @@
             </div>
           </article>
           <article class="card product">
-  <picture>
-    <source srcset="92 X 30 TAB.jpeg 320w, 92 X 30 TAB.jpeg 480w, 92 X 30 TAB.jpeg 720w" sizes="(max-width: 720px) 90vw, 480px">
-    <img src="92 X 30 TAB.jpeg" alt="Istaril 15 mg/92 mg" width="480" height="320" loading="lazy" decoding="async">
-  </picture>
-  <div class="card-body meta">
-    <span class="badge" style="background:#e0f2fe;color:#0369a1">Receta Retenida</span>
-    <div class="title">Istaril 15 mg/92 mg</div>
-    <div class="muted">Acción dual (Fentermina+Topiramato). Apoyo sostenido para un control integral del apetito y los antojos.</div>
-    <div class="pill">Caja x 30 tabletas</div>
-    <div class="hero-cta">
-      <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20consultar%20por%20Istaril%2015%20mg/92%20mg">Consultar por WhatsApp</a>
-    </div>
-  </div>
-</article>
+            <picture>
+              <source srcset="92 X 30 TAB.jpeg 320w, 92 X 30 TAB.jpeg 480w, 92 X 30 TAB.jpeg 720w" sizes="(max-width: 720px) 90vw, 480px">
+              <img src="92 X 30 TAB.jpeg" alt="Caja de Istaril 15 mg/92 mg" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <div class="card-body meta">
+              <span class="badge badge-istaril">Receta Retenida</span>
+              <div class="title">Istaril 15 mg/92 mg</div>
+              <div class="muted">Acción dual (Fentermina+Topiramato). Apoyo sostenido para un control integral del apetito y los antojos.</div>
+              <div class="pill">Caja x 30 tabletas</div>
+              <div class="hero-cta">
+                <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20consultar%20por%20Istaril%2015%20mg/92%20mg">Consultar por WhatsApp</a>
+              </div>
+            </div>
+          </article>
 
-<article class="card product">
-  <picture>
-    <source srcset="3.75.png 320w, 3.75.png 480w, 3.75.png 720w" sizes="(max-width: 720px) 90vw, 480px">
-    <img src="3.75.png" alt="Istaril 3.75 mg/23 mg" width="480" height="320" loading="lazy" decoding="async">
-  </picture>
-  <div class="card-body meta">
-    <span class="badge" style="background:#e0f2fe;color:#0369a1">Receta Retenida</span>
-    <div class="title">Istaril 3.75 mg/23 mg</div>
-    <div class="muted">Acción dual (Fentermina+Topiramato). La dosis inicial para ayudarte a controlar apetito y ansiedad desde el comienzo.</div>
-    <div class="pill">Caja x 30 cápsulas</div>
-    <div class="hero-cta">
-      <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20consultar%20por%20Istaril%203.75%20mg/23%20mg">Consultar por WhatsApp</a>
-    </div>
-  </div>
-</article>
-
-<article class="card product">
+          <article class="card product">
+            <picture>
+              <source srcset="3.75.png 320w, 3.75.png 480w, 3.75.png 720w" sizes="(max-width: 720px) 90vw, 480px">
+              <img src="3.75.png" alt="Caja de Istaril 3.75 mg/23 mg" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <div class="card-body meta">
+              <span class="badge badge-istaril">Receta Retenida</span>
+              <div class="title">Istaril 3.75 mg/23 mg</div>
+              <div class="muted">Acción dual (Fentermina+Topiramato). La dosis inicial para ayudarte a controlar apetito y ansiedad desde el comienzo.</div>
+              <div class="pill">Caja x 30 cápsulas</div>
+              <div class="hero-cta">
+                <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Quiero%20consultar%20por%20Istaril%203.75%20mg/23%20mg">Consultar por WhatsApp</a>
+              </div>
+            </div>
+          </article>
+          <article class="card product">
   <picture>
     <source srcset="46MG X 30 TAB.jpeg 320w, 46MG X 30 TAB.jpeg 480w, 46MG X 30 TAB.jpeg 720w" sizes="(max-width: 720px) 90vw, 480px">
     <img src="46MG X 30 TAB.jpeg" alt="Istaril 7.5 mg/46 mg" width="480" height="320" loading="lazy" decoding="async">
@@ -331,35 +355,38 @@
   </div>
 </article>
         </div>
-        <div class="note" style="margin-top:12px">Se utiliza solo un tipo de medicamento por tratamiento. Consulta por la fórmula ideal para ti. Istaril requiere receta retenida.</div>
+        <div class="note top-margin">Se utiliza solo un tipo de medicamento por tratamiento. Consulta por la fórmula ideal para ti. Istaril requiere receta retenida.</div>
       </div>
     </section>
 
     <section id="cuidado" class="section">
       <div class="container">
-        <h2>Antes de comprar</h2>
+        <h2>¿Eres Apto/a para el tratamiento?</h2>
         <div class="card">
           <div class="card-body">
-            <p class="muted">La información es educativa. Consulta con un profesional de la salud antes de iniciar tratamiento.</p>
+            <p class="muted">La Fentermina es un apoyo poderoso, pero no es para todos. Tu seguridad es lo primero. Responde unas breves preguntas para saber si este tratamiento es adecuado para ti.</p>
             <div class="grid grid-2">
               <div>
-                <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Indicaciones</h3>
+                <h3 class="h3-section">Indicaciones</h3>
                 <ul class="list">
-                  <li>Uso como apoyo para control del apetito dentro de un programa supervisado.</li>
-                  <li>Dosis habitual: 1 cápsula por la mañana con agua, máximo 12 semanas salvo indicación médica.</li>
-                  <li>Evitar duplicar dosis en el mismo día.</li>
+                  <li>Pacientes con Obesidad (IMC > 30).</li>
+                  <li>Pacientes con Sobrepeso (IMC > 27) y factores de riesgo asociados.</li>
+                  <li>Bajo un programa supervisado de dieta y ejercicio.</li>
                 </ul>
               </div>
               <div>
-                <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Evitar si</h3>
+                <h3 class="h3-section">Evitar si</h3>
                 <ul class="list">
-                  <li>Embarazo o lactancia, hipertensión no controlada, cardiopatías, hipertiroidismo, glaucoma.</li>
-                  <li>Uso concomitante de IMAO u otros estimulantes; historial de abuso de sustancias.</li>
-                  <li>Ante efectos adversos intensos, suspender y consultar al médico.</li>
+                  <li>Embarazo o lactancia.</li>
+                  <li>Hipertensión no controlada, cardiopatías, hipertiroidismo.</li>
+                  <li>Antecedentes de abuso de sustancias.</li>
                 </ul>
               </div>
             </div>
-            <div class="note" style="margin-top:10px">Consulta y seguimiento médico garantizan seguridad y eficacia del tratamiento.</div>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a class="btn btn-primary" href="Pre-evaluación/">Empezar Pre-Evaluación</a>
+                <a class="btn btn-outline" href="info/">Ver todas las contraindicaciones</a>
+            </div>
           </div>
         </div>
       </div>
@@ -371,21 +398,21 @@
         <div class="grid grid-2">
           <div class="card">
             <div class="card-body">
-              <p><strong>Fentermina 37.5 mg</strong> actúa en el sistema nervioso central para ayudar a controlar el apetito como parte de un plan con dieta y actividad física.</p>
+              <p><strong>Fentermina 37.5 mg</strong> (Elvenir/Obexol) actúa en el sistema nervioso central para ayudarte a controlar el apetito.</p>
               <ul class="list">
-                <li>Reduce ansiedad por comer y favorece adherencia nutricional.</li>
-                <li>Cambios percibidos desde la primera semana; pérdida de peso entre semanas 2 y 4 varía por persona.</li>
-                <li>Caja con 30 cápsulas para 30 días.</li>
+                <li>Reduce ansiedad por comer y favorece la adherencia a la dieta.</li>
+                <li>Funciona como parte de un plan con dieta y actividad física.</li>
+                <li><strong>Istaril</strong> añade Topiramato para ayudar también con la saciedad y antojos.</li>
               </ul>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
-              <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Efectos y recomendaciones</h3>
+              <h3 class="h3-section">Efectos y recomendaciones</h3>
               <ul class="list">
                 <li>Posibles efectos iniciales: sequedad de boca, insomnio leve, nerviosismo; suelen disminuir.</li>
-                <li>Actividad física ligera o moderada es recomendable para potenciar resultados.</li>
-                <li>Plan alimenticio personalizado disponible en el programa completo.</li>
+                <li>Actividad física ligera o moderada es recomendable.</li>
+                <li>Una caja (30 cápsulas) dura 30 días.</li>
               </ul>
             </div>
           </div>
@@ -399,7 +426,7 @@
         <div class="grid grid-2">
           <div class="card">
             <div class="card-body">
-              <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Limita</h3>
+              <h3 class="h3-section">Limita</h3>
               <ul class="list">
                 <li>Harinas y azúcares refinados, bebidas azucaradas y alcohol.</li>
                 <li>Comidas ultra procesadas y snacks altos en sodio.</li>
@@ -408,15 +435,15 @@
           </div>
           <div class="card">
             <div class="card-body">
-              <h3 style="margin:0 0 .4rem 0;font-size:var(--step-1)">Prioriza</h3>
+              <h3 class="h3-section">Prioriza</h3>
               <ul class="list">
                 <li>Proteínas magras, verduras, frutas y grasas saludables.</li>
-                <li>Agua suficiente y horarios de comida regulares.</li>
+                <li>Agua suficiente (2-3 litros) y horarios de comida regulares.</li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="note" style="margin-top:10px">Un pequeño ajuste en tu rutina puede marcar una gran diferencia.</div>
+        <div class="note top-margin">Un pequeño ajuste en tu rutina puede marcar una gran diferencia.</div>
       </div>
     </section>
 
@@ -426,24 +453,24 @@
         <div class="grid grid-3">
           <div class="card">
             <div class="card-body">
-              <h3 style="margin:0 0 .4rem 0;font-size:1.1rem">Original garantizado</h3>
+              <h3 class="h3-section" style="font-size: 1.1rem;">Original garantizado</h3>
               <p class="muted">Solo productos sellados de laboratorios Abbott, Saval y Tecnofarma.</p>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
-              <h3 style="margin:0 0 .4rem 0;font-size:1.1rem">Pago contra entrega</h3>
+              <h3 class="h3-section" style="font-size: 1.1rem;">Pago contra entrega</h3>
               <p class="muted">Yape o transferencia bancaria BCP al recibir en tu domicilio en Lima.</p>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
-              <h3 style="margin:0 0 .4rem 0;font-size:1.1rem">Envío rápido</h3>
+              <h3 class="h3-section" style="font-size: 1.1rem;">Envío rápido</h3>
               <p class="muted">Entregas el mismo día o al siguiente; provincias con proceso transparente.</p>
             </div>
           </div>
         </div>
-        <div class="hero-cta" style="margin-top:12px">
+        <div class="hero-cta top-margin">
           <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/51900894032?text=Hola,%20quiero%20coordinar%20mi%20pedido">Coordinar por WhatsApp</a>
         </div>
       </div>
@@ -464,11 +491,6 @@
         </details>
         
         <details>
-          <summary>¿Cuánto dura una caja?</summary>
-          <div class="muted">Todas las presentaciones (Elvenir, Obexol e Istaril) vienen en cajas de 30 cápsulas/tabletas, equivalentes a 30 días de tratamiento.</div>
-        </details>
-        
-        <details>
           <summary>¿Cuál es la diferencia entre Elvenir/Obexol e Istaril?</summary>
           <div class="muted">Elvenir y Obexol contienen solo Fentermina, un supresor del apetito. Istaril combina Fentermina con Topiramato, una fórmula de acción dual que ayuda a controlar el apetito y también la saciedad o los antojos.</div>
         </details>
@@ -481,11 +503,6 @@
         <details>
           <summary>¿Y si olvido una dosis?</summary>
           <div class="muted">Tómala cuando lo recuerdes si es temprano; si es tarde (después del mediodía), es mejor omitir la dosis y continuar al día siguiente. No dupliques dosis.</div>
-        </details>
-        
-        <details>
-          <summary>¿Puedo combinar varios productos?</summary>
-          <div class="muted">No. Se debe usar solo un tipo de medicamento a la vez y bajo indicación médica. Nunca combines Elvenir con Obexol ni con Istaril.</div>
         </details>
         
       </div>
@@ -509,7 +526,7 @@
   <footer>
     <div class="container">
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
-        <div>© <span id="year"></span> Elvenir & Obexol • Envíos a todo Perú</div>
+        <div>© <span id="year"></span> Bienestar Vital • Envíos a todo Perú</div>
         <div style="display:flex;gap:10px">
           <a class="muted" href="#cuidado">Uso responsable</a>
           <a class="muted" href="#faq">FAQ</a>
@@ -575,6 +592,14 @@
       a.addEventListener('click', ()=>{
         if(panel.classList.contains('active')) closeMenu();
       });
+    });
+    
+    // MEJORA: Este script cierra el menú móvil si haces clic en un enlace
+    // que NO es un ancla (es decir, que te lleva a otra página como /masinformacion/)
+    document.querySelectorAll('.nav-sheet a:not([href^="#"])').forEach(a=>{
+        a.addEventListener('click', ()=>{
+            if(panel.classList.contains('active')) closeMenu();
+        });
     });
   </script>
 </body>
