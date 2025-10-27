@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación de Aptitud Médica - Bienestar Vital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        /* Fuente Inter para estética moderna */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f8; /* Fondo gris claro */
+        }
+        
+        /* Estilos específicos para la sección de resultado */
+        #resultado-screen {
+            min-height: 400px;
+            /* Se quita 'display: flex;' de aquí para que no pelee con el ocultamiento */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bg-rojo { background-color: #ef4444; } /* Tailwind red-500 */
+        .bg-amarillo { background-color: #f59e0b; } /* Tailwind amber-500 */
+        .bg-verde { background-color: #10b981; } /* Tailwind emerald-500 */
+        
+        /* Estilo para los botones de radio personalizados */
+        input[type="radio"]:checked + label {
+            background-color: #10b981; /* Verde esmeralda para seleccionado */
+            color: white;
+            border-color: #059669;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden p-6 sm:p-10">
+
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800">
+                Test de Pre-evaluación Médica
+            </h1>
+            <p class="text-sm text-gray-500 mt-1">Bienestar Vital - Tratamiento de control de peso</p>
+        </header>
+
+        <div id="formulario-screen" style="display: block;">
+            <form id="evaluacionForm" class="space-y-6">
+
+                <div class="p-5 bg-gray-50 rounded-lg">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Datos Iniciales (Requerido)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="nombreCompleto" class="block text-sm font-medium text-gray-700">Nombre Completo:</label>
+                            <input type="text" id="nombreCompleto" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-2 border">
+                        </div>
+                        <div>
+                            <label for="edad" class="block text-sm font-medium text-gray-700">Edad (años):</label>
+                            <input type="number" id="edad" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-2 border" min="18" max="100" inputmode="numeric">
+                        </div>
+                        <div class="flex space-x-4">
+                            <div class="flex-1">
+                                <label for="peso" class="block text-sm font-medium text-gray-700">Peso actual (kg):</label>
+                                <input type="number" id="peso" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-2 border" inputmode="decimal" step="0.1">
+                            </div>
+                            <div class="flex-1">
+                                <label for="altura" class="block text-sm font-medium text-gray-700">Altura (metros, ej: 1.65):</label>
+                                <input type="number" id="altura" step="0.01" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-2 border" inputmode="decimal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg shadow-sm">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="w-5 h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-yellow-800">ADVERTENCIA MÉDICA Y LEGAL</p>
+                            <p class="mt-1 text-xs text-yellow-700">
+                                Debe responder a este cuestionario **con total sinceridad**. La información es estrictamente confidencial y vital para su seguridad. Responder con falsedad u omisión de información es bajo su **exclusiva responsabilidad**. Este test NO sustituye una consulta con un profesional de la salud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-5 border border-red-200 bg-red-50 rounded-lg space-y-4">
+                    <h2 class="text-lg font-semibold text-red-600">Salud Cardiovascular <span class="text-sm font-normal text-gray-500">(Obligatorio)</span></h2>
+
+                    <div class="question-block" data-name="hipertension">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Presión arterial?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="hta-no" name="hipertension" value="No tengo" required class="hidden">
+                            <label for="hta-no" class="flex-1 min-w-[100px] text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No tengo</label>
+                            
+                            <input type="radio" id="hta-controlada" name="hipertension" value="Sí, controlada" required class="hidden">
+                            <label for="hta-controlada" class="flex-1 min-w-[100px] text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí, controlada</label>
+
+                            <input type="radio" id="hta-no-controlada" name="hipertension" value="Sí, NO controlada" required class="hidden">
+                            <label for="hta-no-controlada" class="flex-1 min-w-[100px] text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí, NO controlada</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block" data-name="cardiopatia">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Enfermedad del corazón (infarto, arritmia, soplo, etc.)?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="card-si" name="cardiopatia" value="Sí" required class="hidden">
+                            <label for="card-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="card-no" name="cardiopatia" value="No" required class="hidden">
+                            <label for="card-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question-block" data-name="acv">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Derrame cerebral (ACV) o "mini-derrame"?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="acv-si" name="acv" value="Sí" required class="hidden">
+                            <label for="acv-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="acv-no" name="acv" value="No" required class="hidden">
+                            <label for="acv-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block" data-name="htp">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Hipertensión pulmonar (HTP)?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="htp-si" name="htp" value="Sí" required class="hidden">
+                            <label for="htp-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="htp-no" name="htp" value="No" required class="hidden">
+                            <label for="htp-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 border border-amber-200 bg-amber-50 rounded-lg space-y-4">
+                    <h2 class="text-lg font-semibold text-amber-600">Otras Condiciones y Medicamentos <span class="text-sm font-normal text-gray-500">(Obligatorio)</span></h2>
+
+                    <div class="question-block" data-name="tiroides">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Problemas de Tiroides?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="tiro-no" name="tiroides" value="No tengo" required class="hidden">
+                            <label for="tiro-no" class="flex-1 min-w-[100px] text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No tengo</label>
+                            <input type="radio" id="tiro-hipo" name="tiroides" value="Hipotiroidismo" required class="hidden">
+                            <label for="tiro-hipo" class="flex-1 min-w-[100px] text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Hipotiroidismo</label>
+                            <input type="radio" id="tiro-hiper" name="tiroides" value="Hipertiroidismo (activa)" required class="hidden">
+                            <label for="tiro-hiper" class="flex-1 min-w-[100px] text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Hipertiroidismo (activa)</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block" data-name="glaucoma">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Glaucoma?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="glau-si" name="glaucoma" value="Sí" required class="hidden">
+                            <label for="glau-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="glau-no" name="glaucoma" value="No" required class="hidden">
+                            <label for="glau-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block" data-name="diabetes">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Diabetes?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="diab-si" name="diabetes" value="Sí" required class="hidden">
+                            <label for="diab-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="diab-no" name="diabetes" value="No" required class="hidden">
+                            <label for="diab-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question-block" data-name="epilepsia">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Antecedentes de epilepsia o convulsiones?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="epi-si" name="epilepsia" value="Sí" required class="hidden">
+                            <label for="epi-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="epi-no" name="epilepsia" value="No" required class="hidden">
+                            <label for="epi-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block" data-name="imao">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Ha tomado Inhibidores de la MAO (IMAO) en las últimas 2 semanas?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="imao-si" name="imao" value="Sí" required class="hidden">
+                            <label for="imao-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="imao-no" name="imao" value="No" required class="hidden">
+                            <label for="imao-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block" data-name="abusoSustancias">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Antecedentes de abuso de alcohol o drogas?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="abuso-si" name="abusoSustancias" value="Sí" required class="hidden">
+                            <label for="abuso-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="abuso-no" name="abusoSustancias" value="No" required class="hidden">
+                            <label for="abuso-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question-block" data-name="ansiedad">
+                        <p class="text-sm font-medium text-gray-700 mb-2">¿Sufre de ansiedad severa, agitación o nerviosismo frecuente?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="anx-si" name="ansiedad" value="Sí" required class="hidden">
+                            <label for="anx-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="anx-no" name="ansiedad" value="No" required class="hidden">
+                            <label for="anx-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block" data-name="embarazo">
+                        <p class="text-sm font-medium text-gray-700 mb-2">(Solo para mujeres) ¿Está embarazada, intentando quedar embarazada o en período de lactancia?</p>
+                        <div class="flex flex-wrap gap-2">
+                            <input type="radio" id="emb-si" name="embarazo" value="Sí" required class="hidden">
+                            <label for="emb-si" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">Sí</label>
+                            <input type="radio" id="emb-no" name="embarazo" value="No" required class="hidden">
+                            <label for="emb-no" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No</label>
+                            <input type="radio" id="emb-na" name="embarazo" value="No aplica" required class="hidden">
+                            <label for="emb-na" class="flex-1 text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-gray-100">No aplica</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-xl text-lg font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-150">
+                        Obtener mi Evaluación Rápida
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="resultado-screen" class="rounded-xl shadow-lg mt-8" style="display: none;">
+            <div id="capture-area" class="w-full">
+                <div id="resultado-color-banner" class="w-full p-8 rounded-t-xl text-white">
+                    <p class="text-sm font-semibold mb-2">RESULTADO PRELIMINAR DE APTITUD</p>
+                    <h2 id="resultado-titulo" class="text-4xl sm:text-5xl font-extrabold"></h2>
+                </div>
+                
+                <div class="p-8 w-full bg-white rounded-b-xl border-t border-gray-200">
+                    
+                    <div class="text-left mb-6 p-4 border border-gray-100 bg-gray-50 rounded-lg">
+                        <h3 class="text-sm font-bold text-gray-700 mb-2">Datos Registrados</h3>
+                        <p class="text-xs text-gray-600">Nombre: <span id="res-nombre" class="font-semibold"></span></p>
+                        <p class="text-xs text-gray-600">Edad: <span id="res-edad" class="font-semibold"></span> años</p>
+                        <p class="text-xs text-gray-600">Peso: <span id="res-peso" class="font-semibold"></span> kg</p>
+                        <p class="text-xs text-gray-600">Altura: <span id="res-altura" class="font-semibold"></span> m</p>
+                        <p class="text-xs text-gray-600">IMC: <span id="res-imc" class="font-semibold"></span></p>
+                    </div>
+
+                    <div id="res-razones-container" class="text-left mb-6" style="display: none;">
+                        <h3 class="text-sm font-bold text-gray-700 mb-2">Respuestas que requieren atención:</h3>
+                        <ul id="res-razones-lista" class="list-disc list-inside text-sm space-y-1">
+                            </ul>
+                    </div>
+                    <p id="resultado-mensaje" class="text-gray-700 mb-6 text-base text-left"></p>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6 rounded-lg text-left">
+                        <p class="text-xs font-medium text-yellow-800">
+                            Advertencia: Este resultado se basa **ÚNICAMENTE** en su sinceridad.
+                        </p>
+                    </div>
+                </div>
+            </div> <div class="p-8 w-full bg-gray-100 rounded-b-xl space-y-3">
+                 <button id="downloadBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-xl text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150">
+                    Descargar mi Resultado (PNG)
+                </button>
+
+                <a href="https://wa.me/51900894032" target="_blank" class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-xl text-lg font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-150">
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.06 21.94L7.32 20.58C8.77 21.33 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2ZM17.83 15.24C17.58 15.82 16.79 16.29 16.2 16.35C15.71 16.42 14.93 16.23 14.36 16C13.56 15.68 12.63 15.12 11.83 14.32C10.9 13.39 10.15 12.28 9.88 11.7C9.6 11.12 9.3 10.54 9.4 10.05C9.5 9.56 9.91 9.2 10.31 8.84C10.66 8.52 10.91 8.44 11.15 8.44C11.39 8.44 11.63 8.44 11.83 8.44C12.02 8.44 12.26 8.93 12.41 9.17C12.56 9.41 12.71 9.71 12.71 9.83C12.71 9.95 12.63 10.14 12.41 10.39C12.18 10.63 12.06 10.75 11.94 10.9C11.82 11.05 11.7 11.2 11.82 11.4C11.95 11.6 12.44 12.33 13.11 12.98C13.91 13.76 14.56 14.17 14.85 14.29C15.14 14.41 15.33 14.37 15.53 14.17C15.77 13.92 16.12 13.48 16.36 13.2C16.6 12.92 16.89 12.84 17.18 12.96C17.47 13.08 18.07 13.73 18.31 13.97C18.55 14.21 18.7 14.33 18.75 14.45C18.8 14.57 18.8 15.03 18.6 15.24L17.83 15.24Z"/></svg>
+                    Contactar por WhatsApp
+                </a>
+                <a href="https://bienestarvital.netlify.app/" class="block text-center w-full py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-gray-700 bg-gray-300 hover:bg-gray-400 transition duration-150">
+                    Finalizar y Volver a Bienestar Vital
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Función para Descargar la Captura
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const captureArea = document.getElementById('capture-area');
+            
+            html2canvas(captureArea, {
+                scale: 2, 
+                useCORS: true,
+                backgroundColor: '#ffffff'
+            }).then(function(canvas) {
+                const image = canvas.toDataURL("image/png", 1.0);
+                const link = document.createElement('a');
+
+                const nombreCompletoLimpio = document.getElementById('res-nombre').textContent
+                    .replace(/[^a-zA-Z0-9\s]/g, '') 
+                    .replace(/\s+/g, '_'); 
+
+                link.download = `Resultado_${nombreCompletoLimpio || 'Paciente'}_BienestarVital.png`;
+                link.href = image;
+                link.click();
+
+                console.log('Captura descargada correctamente.');
+            });
+        });
+
+        // 2. Lógica del Formulario
+        document.getElementById('evaluacionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // 1. Obtener valores del formulario
+            const form = e.target;
+            const nombreCompleto = form.elements['nombreCompleto'].value;
+            const edad = form.elements['edad'].value;
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+
+            if (isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0) {
+                alert("Por favor, ingrese un peso y altura válidos y mayores a cero.");
+                return; 
+            }
+
+            const hta = form.elements['hipertension'].value;
+            const cardiopatia = form.elements['cardiopatia'].value;
+            const acv = form.elements['acv'].value;
+            const htp = form.elements['htp'].value;
+            const tiroides = form.elements['tiroides'].value;
+            const glaucoma = form.elements['glaucoma'].value;
+            const diabetes = form.elements['diabetes'].value;
+            const epilepsia = form.elements['epilepsia'].value;
+            const imao = form.elements['imao'].value;
+            const abusoSustancias = form.elements['abusoSustancias'].value;
+            const ansiedad = form.elements['ansiedad'].value;
+            const embarazo = form.elements['embarazo'].value;
+            
+            // --- LÓGICA DE EVALUACIÓN ACTUALIZADA ---
+            let aptitud = 'APTO';
+            let titulo = 'APTO para Evaluación Final';
+            let colorClass = 'bg-verde';
+            let mensaje = '';
+            let razones = []; // NUEVO: Array para guardar las razones de la advertencia
+
+            const imc = peso / (altura * altura);
+            
+            // A. BANDERAS ROJAS (NO APTO)
+            if (hta === 'Sí, NO controlada') razones.push('Presión arterial: SÍ, NO controlada');
+            if (cardiopatia === 'Sí') razones.push('Enfermedad del corazón: Sí');
+            if (acv === 'Sí') razones.push('Derrame cerebral (ACV): Sí');
+            if (htp === 'Sí') razones.push('Hipertensión pulmonar: Sí');
+            if (tiroides === 'Hipertiroidismo (activa)') razones.push('Tiroides: Hipertiroidismo (activa)');
+            if (glaucoma === 'Sí') razones.push('Glaucoma: Sí');
+            if (imao === 'Sí') razones.push('Uso de IMAO (últimas 2 sem): Sí');
+            if (abusoSustancias === 'Sí') razones.push('Abuso de alcohol/drogas: Sí');
+            if (embarazo === 'Sí') razones.push('Embarazo/Lactancia: Sí');
+
+            if (razones.length > 0) {
+                aptitud = 'NO APTO';
+                titulo = 'NO APTO (Riesgo Alto)';
+                colorClass = 'bg-rojo';
+                mensaje = 'Lo sentimos. Basado en sus respuestas, usted presenta una <strong>contraindicación absoluta</strong> para el tratamiento inicial. Recomendamos encarecidamente que consulte a su médico de cabecera. Por favor, revise los puntos listados arriba.';
+            } 
+            // B. BANDERA IMC BAJO (También NO APTO)
+            else if (imc < 25) {
+                aptitud = 'NO APTO';
+                titulo = 'NO APTO (IMC Bajo)';
+                colorClass = 'bg-rojo';
+                mensaje = `Su Índice de Masa Corporal (IMC: ${imc.toFixed(1)}) es <strong>demasiado bajo</strong> para calificar para el tratamiento inicial, el cual está reservado para casos de sobrepeso u obesidad. Consulte otras opciones con su médico.`;
+                razones.push(`IMC: ${imc.toFixed(1)} (Bajo el umbral de 25)`);
+            }
+            // C. BANDERAS AMARILLAS (PRECAUCIÓN)
+            else {
+                if (hta === 'Sí, controlada') razones.push('Presión arterial: Sí, controlada');
+                if (diabetes === 'Sí') razones.push('Diabetes: Sí');
+                if (epilepsia === 'Sí') razones.push('Epilepsia/Convulsiones: Sí');
+                if (ansiedad === 'Sí') razones.push('Ansiedad severa: Sí');
+                if (tiroides === 'Hipotiroidismo') razones.push('Tiroides: Hipotiroidismo');
+
+                if (razones.length > 0) {
+                    aptitud = 'PRECAUCIÓN';
+                    titulo = 'PRECAUCIÓN (Requiere Revisión Médica Específica)';
+                    colorClass = 'bg-amarillo';
+                    mensaje = 'Su pre-evaluación indica condiciones que requieren una <strong>evaluación médica detallada</strong> y la presentación de exámenes médicos recientes. Por favor, revise los puntos listados arriba y envíe su resultado a nuestro equipo para iniciar el proceso de revisión.';
+                }
+                // D. BANDERA VERDE (APTO)
+                else {
+                    aptitud = 'APTO';
+                    titulo = 'APTO para Evaluación Final';
+                    colorClass = 'bg-verde';
+                    mensaje = `¡Felicitaciones! Su IMC es de ${imc.toFixed(1)}. Basado en su pre-evaluación, usted califica para la siguiente fase. Por favor, descargue y envíe su resultado (PNG) a nuestro equipo para agendar su consulta médica detallada.`;
+                }
+            }
+            // --- FIN DE LA LÓGICA DE EVALUACIÓN ---
+
+
+            // 3. Llenar la pantalla de resultados con los datos y el veredicto
+            document.getElementById('res-nombre').textContent = nombreCompleto;
+            document.getElementById('res-edad').textContent = edad;
+            document.getElementById('res-peso').textContent = peso.toFixed(1);
+            document.getElementById('res-altura').textContent = altura.toFixed(2);
+            document.getElementById('res-imc').textContent = imc.toFixed(1);
+
+            document.getElementById('resultado-titulo').textContent = titulo;
+            document.getElementById('resultado-mensaje').innerHTML = mensaje;
+
+            // --- NUEVO: Llenar la lista de razones ---
+            const razonesContainer = document.getElementById('res-razones-container');
+            const razonesLista = document.getElementById('res-razones-lista');
+            razonesLista.innerHTML = ''; // Limpiar lista anterior
+
+            if (razones.length > 0) {
+                razones.forEach(razon => {
+                    const li = document.createElement('li');
+                    li.textContent = razon;
+                    razonesLista.appendChild(li);
+                });
+                
+                // Cambiar color de la lista según el resultado
+                if (aptitud === 'NO APTO') {
+                    razonesLista.className = 'list-disc list-inside text-sm text-red-700 space-y-1';
+                } else if (aptitud === 'PRECAUCIÓN') {
+                    razonesLista.className = 'list-disc list-inside text-sm text-amber-700 space-y-1';
+                }
+
+                razonesContainer.style.display = 'block'; // Mostrar el contenedor
+            } else {
+                razonesContainer.style.display = 'none'; // Ocultar si no hay razones (caso APTO)
+            }
+            // --- FIN DE LLENAR RAZONES ---
+
+
+            const banner = document.getElementById('resultado-color-banner');
+            banner.classList.remove('bg-rojo', 'bg-amarillo', 'bg-verde');
+            banner.classList.add(colorClass);
+
+            // 4. Mostrar Resultado y ocultar Formulario
+            document.getElementById('formulario-screen').style.display = 'none';
+            document.getElementById('resultado-screen').style.display = 'flex'; 
+
+            // Asegura que el usuario vea el resultado en la parte superior
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
